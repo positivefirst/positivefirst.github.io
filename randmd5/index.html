@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;positivefirst.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="基于MD5的随机数生成器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="randmd5">
+<meta property="og:url" content="http://positivefirst.github.io/randmd5/index.html">
+<meta property="og:site_name" content="静心立志 进取豁达">
+<meta property="og:description" content="基于MD5的随机数生成器">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-18T12:27:00.000Z">
+<meta property="article:modified_time" content="2021-12-20T08:42:38.259Z">
+<meta property="article:author" content="positive1">
+<meta property="article:tag" content="代码">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://positivefirst.github.io/randmd5/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;positivefirst.github.io&#x2F;randmd5&#x2F;&quot;,&quot;path&quot;:&quot;randmd5&#x2F;&quot;,&quot;title&quot;:&quot;randmd5&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>randmd5 | 静心立志 进取豁达</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">静心立志 进取豁达</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-收藏夹"><a href="/collections/" rel="section"><i class="fa fa-star fa-fw"></i>收藏夹</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-班级日记"><a href="/tags/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B0/" rel="section"><i class="fa fa-book fa-fw"></i>班级日记</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0%E5%BC%95%E6%93%8E"><span class="nav-text">随机数引擎</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="nav-text">生成随机数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E7%A7%8D%E5%AD%90"><span class="nav-text">更改种子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B%EF%BC%88%E6%A8%A1%E4%BB%BF%E5%90%8D%E5%AD%97%E7%AB%9E%E6%8A%80%E5%9C%BA%EF%BC%89"><span class="nav-text">代码示例（模仿名字竞技场）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E6%95%88%E7%8E%87"><span class="nav-text">实际效率</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87"><span class="nav-text">准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-text">结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-text">代码</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">positive1</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/randmd5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="positive1">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="静心立志 进取豁达">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          randmd5
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-18 20:27:00" itemprop="dateCreated datePublished" datetime="2021-06-18T20:27:00+08:00">2021-06-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>基于MD5的随机数生成器</p>
+<span id="more"></span>
+
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>randmd5使用字符串作为种子，生成随机数，也可以作为随机数引擎。</p>
+<p>它可以在C++98下通过编译（比rand强多了），也可以和C++11的随机数分布配合使用。</p>
+<p>MD5运算的代码来自<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/MD5/212708">百度百科</a>，有删改。</p>
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><p>复制本文最后的代码，保存为<code>randmd5.h</code>（和使用这个头文件的代码保存在同一个文件夹中）。</p>
+<p>首先要<code>#include&quot;randmd5.h&quot;</code>。声明的随机数变量类型就是<code>randmd5</code>。</p>
+<p>后文中默认<code>typedef unsigned int ui;</code>。</p>
+<h2 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">randmd5</span>(string s,ui a,ui b,ui c,ui d);</span><br><span class="line"><span class="built_in">randmd5</span>(string s=<span class="string">&quot;randmd5&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>s</code>是随机数种子。如果<code>s</code>的长度超过<code>4000</code>，超过部分会被忽略。</p>
+<p><code>a,b,c,d</code>是MD5运算要用到的初始值，如果不指定，默认为<code>a=0x12345670u,b=0x89abcdefu,c=0x20210118u,d=0xccfccfacu</code>。</p>
+<h2 id="随机数引擎"><a href="#随机数引擎" class="headerlink" title="随机数引擎"></a>随机数引擎</h2><p>为了适应C++11的随机数分布（如<code>uniform_int_distribution</code>和<code>uniform_real_distribution</code>），一般不会用到。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> ui result_type;</span><br><span class="line"><span class="function">ui <span class="title">min</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">ui <span class="title">max</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>min()</code>的返回值为<code>0</code>，<code>max</code>的返回值为<code>0xffffffffu</code>。</p>
+<h2 id="生成随机数"><a href="#生成随机数" class="headerlink" title="生成随机数"></a>生成随机数</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ui <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> len=<span class="number">32</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>len</code>是希望生成的随机数的二进制长度，也就是返回一个均匀分布的在$0 \sim 2^{len}-1$范围内的随机数。</p>
+<p>如果<code>len&lt;1||len&gt;32</code>，返回<code>0</code>。</p>
+<h2 id="更改种子"><a href="#更改种子" class="headerlink" title="更改种子"></a>更改种子</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">srand</span><span class="params">(string s)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>s</code>是新的随机数种子。如果<code>s</code>的长度超过<code>4000</code>，超过部分会被忽略。</p>
+<h2 id="代码示例（模仿名字竞技场）"><a href="#代码示例（模仿名字竞技场）" class="headerlink" title="代码示例（模仿名字竞技场）"></a>代码示例（模仿名字竞技场）</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//请使用C++11</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;randmd5.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">randmd5 <span class="title">r</span><span class="params">(<span class="string">&quot;&quot;</span>,<span class="number">0x11223344</span>u,<span class="number">0xfafacbcb</span>u,<span class="number">0xa1a23333</span>u,<span class="number">0x5678aabb</span>u)</span></span>;</span><br><span class="line">	uniform_int_distribution&lt;<span class="keyword">int</span>&gt;<span class="built_in">rd</span>(<span class="number">1</span>,<span class="number">100</span>);</span><br><span class="line">	string name;</span><br><span class="line">	<span class="keyword">while</span>(cin&gt;&gt;name)</span><br><span class="line">	&#123;</span><br><span class="line">		r.<span class="built_in">srand</span>(name);</span><br><span class="line">		cout&lt;&lt;<span class="string">&quot;HP &quot;</span>&lt;&lt;<span class="built_in">r</span>(<span class="number">7</span>)+<span class="built_in">r</span>(<span class="number">7</span>)+<span class="built_in">r</span>(<span class="number">7</span>)&lt;&lt;<span class="string">&quot; 攻 &quot;</span>&lt;&lt;<span class="built_in">rd</span>(r)&lt;&lt;<span class="string">&quot; 防 &quot;</span>&lt;&lt;<span class="built_in">rd</span>(r)&lt;&lt;<span class="string">&quot; 速 &quot;</span>&lt;&lt;<span class="built_in">rd</span>(r)</span><br><span class="line">		&lt;&lt;<span class="string">&quot; 敏 &quot;</span>&lt;&lt;<span class="built_in">rd</span>(r)&lt;&lt;<span class="string">&quot; 魔 &quot;</span>&lt;&lt;<span class="built_in">rd</span>(r)&lt;&lt;<span class="string">&quot; 抗 &quot;</span>&lt;&lt;<span class="built_in">rd</span>(r)&lt;&lt;<span class="string">&quot; 智 &quot;</span>&lt;&lt;<span class="built_in">rd</span>(r)&lt;&lt;endl;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">输入： </span></span><br><span class="line"><span class="comment">AKIOI2021</span></span><br><span class="line"><span class="comment">青铜时代2333@前进四</span></span><br><span class="line"><span class="comment">神威·太湖之光</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">输出： </span></span><br><span class="line"><span class="comment">HP 288 攻 5 防 11 速 94 敏 76 魔 91 抗 13 智 12</span></span><br><span class="line"><span class="comment">HP 231 攻 9 防 95 速 32 敏 94 魔 30 抗 28 智 32</span></span><br><span class="line"><span class="comment">HP 144 攻 74 防 46 速 74 敏 64 魔 64 抗 7 智 21</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="实际效率"><a href="#实际效率" class="headerlink" title="实际效率"></a>实际效率</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>使用各自的默认种子，生成一千万个随机数（$0$或$1$）。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">default_random_engine e;</span><br><span class="line">randmd5 r;</span><br><span class="line">uniform_int_distribution&lt;<span class="keyword">int</span>&gt;<span class="built_in">u</span>(<span class="number">0</span>,<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><table>
+<thead>
+<tr>
+<th>随机数生成方式</th>
+<th><code>u(e)</code></th>
+<th><code>r(1)</code></th>
+<th><code>u(r)</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>$1$的个数（以$5$百万为基准）</td>
+<td>$-458$</td>
+<td>$+251$</td>
+<td>$-2018$</td>
+</tr>
+<tr>
+<td>用时（秒）</td>
+<td>$2.656$</td>
+<td>$3.859$</td>
+<td>$62.728$</td>
+</tr>
+</tbody></table>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>三种生成方式产生的随机数质量差不多，$1$的个数均属于正常范围。</p>
+<p>相比之下，<code>u(r)</code>的速度很慢，但如果不要求生成那么多随机数，还是可以接受的。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> RANDMD5_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RANDMD5_H 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">namespace</span> _randmd5</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">using</span> std::string;</span><br><span class="line">	<span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> ui;</span><br><span class="line">	<span class="function">ui <span class="title">F</span><span class="params">(ui x,ui y,ui z)</span></span>&#123;<span class="keyword">return</span> ((x) &amp; (y)) | ((~x) &amp; (z));&#125;</span><br><span class="line">	<span class="function">ui <span class="title">G</span><span class="params">(ui x,ui y,ui z)</span></span>&#123;<span class="keyword">return</span> ((x) &amp; (z)) | ((y) &amp; (~z));&#125;</span><br><span class="line">	<span class="function">ui <span class="title">H</span><span class="params">(ui x,ui y,ui z)</span></span>&#123;<span class="keyword">return</span> (x) ^ (y) ^ (z);&#125;</span><br><span class="line">	<span class="function">ui <span class="title">I</span><span class="params">(ui x,ui y,ui z)</span></span>&#123;<span class="keyword">return</span> (y) ^ ((x) | (~z));&#125;</span><br><span class="line">	<span class="keyword">const</span> ui k[]=&#123;<span class="number">0xd76aa478</span>,<span class="number">0xe8c7b756</span>,<span class="number">0x242070db</span>,<span class="number">0xc1bdceee</span>,<span class="number">0xf57c0faf</span>,<span class="number">0x4787c62a</span>,<span class="number">0xa8304613</span>,<span class="number">0xfd469501</span>,<span class="number">0x698098d8</span>,<span class="number">0x8b44f7af</span>,<span class="number">0xffff5bb1</span>,<span class="number">0x895cd7be</span>,<span class="number">0x6b901122</span>,<span class="number">0xfd987193</span>,<span class="number">0xa679438e</span>,<span class="number">0x49b40821</span>,<span class="number">0xf61e2562</span>,<span class="number">0xc040b340</span>,<span class="number">0x265e5a51</span>,<span class="number">0xe9b6c7aa</span>,<span class="number">0xd62f105d</span>,<span class="number">0x02441453</span>,<span class="number">0xd8a1e681</span>,<span class="number">0xe7d3fbc8</span>,<span class="number">0x21e1cde6</span>,<span class="number">0xc33707d6</span>,<span class="number">0xf4d50d87</span>,<span class="number">0x455a14ed</span>,<span class="number">0xa9e3e905</span>,<span class="number">0xfcefa3f8</span>,<span class="number">0x676f02d9</span>,<span class="number">0x8d2a4c8a</span>,<span class="number">0xfffa3942</span>,<span class="number">0x8771f681</span>,<span class="number">0x6d9d6122</span>,<span class="number">0xfde5380c</span>,<span class="number">0xa4beea44</span>,<span class="number">0x4bdecfa9</span>,<span class="number">0xf6bb4b60</span>,<span class="number">0xbebfbc70</span>,<span class="number">0x289b7ec6</span>,<span class="number">0xeaa127fa</span>,<span class="number">0xd4ef3085</span>,<span class="number">0x04881d05</span>,<span class="number">0xd9d4d039</span>,<span class="number">0xe6db99e5</span>,<span class="number">0x1fa27cf8</span>,<span class="number">0xc4ac5665</span>,<span class="number">0xf4292244</span>,<span class="number">0x432aff97</span>,<span class="number">0xab9423a7</span>,<span class="number">0xfc93a039</span>,<span class="number">0x655b59c3</span>,<span class="number">0x8f0ccc92</span>,<span class="number">0xffeff47d</span>,<span class="number">0x85845dd1</span>,<span class="number">0x6fa87e4f</span>,<span class="number">0xfe2ce6e0</span>,<span class="number">0xa3014314</span>,<span class="number">0x4e0811a1</span>,<span class="number">0xf7537e82</span>,<span class="number">0xbd3af235</span>,<span class="number">0x2ad7d2bb</span>,<span class="number">0xeb86d391</span>&#125;;</span><br><span class="line">	<span class="keyword">const</span> ui s[]=&#123;<span class="number">7</span>,<span class="number">12</span>,<span class="number">17</span>,<span class="number">22</span>,<span class="number">7</span>,<span class="number">12</span>,<span class="number">17</span>,<span class="number">22</span>,<span class="number">7</span>,<span class="number">12</span>,<span class="number">17</span>,<span class="number">22</span>,<span class="number">7</span>,<span class="number">12</span>,<span class="number">17</span>,<span class="number">22</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">14</span>,<span class="number">20</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">14</span>,<span class="number">20</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">14</span>,<span class="number">20</span>,<span class="number">5</span>,<span class="number">9</span>,<span class="number">14</span>,<span class="number">20</span>,<span class="number">4</span>,<span class="number">11</span>,<span class="number">16</span>,<span class="number">23</span>,<span class="number">4</span>,<span class="number">11</span>,<span class="number">16</span>,<span class="number">23</span>,<span class="number">4</span>,<span class="number">11</span>,<span class="number">16</span>,<span class="number">23</span>,<span class="number">4</span>,<span class="number">11</span>,<span class="number">16</span>,<span class="number">23</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">21</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">21</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">21</span>,<span class="number">6</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">21</span>&#125;;</span><br><span class="line">	<span class="keyword">const</span> string str16[<span class="number">16</span>]=&#123;<span class="string">&quot;0&quot;</span>,<span class="string">&quot;1&quot;</span>,<span class="string">&quot;2&quot;</span>,<span class="string">&quot;3&quot;</span>,<span class="string">&quot;4&quot;</span>,<span class="string">&quot;5&quot;</span>,<span class="string">&quot;6&quot;</span>,<span class="string">&quot;7&quot;</span>,<span class="string">&quot;8&quot;</span>,<span class="string">&quot;9&quot;</span>,<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>,<span class="string">&quot;d&quot;</span>,<span class="string">&quot;e&quot;</span>,<span class="string">&quot;f&quot;</span>&#125;;</span><br><span class="line">	<span class="keyword">const</span> string bin16[<span class="number">16</span>]=&#123;<span class="string">&quot;0000&quot;</span>,<span class="string">&quot;0001&quot;</span>,<span class="string">&quot;0010&quot;</span>,<span class="string">&quot;0011&quot;</span>,<span class="string">&quot;0100&quot;</span>,<span class="string">&quot;0101&quot;</span>,<span class="string">&quot;0110&quot;</span>,<span class="string">&quot;0111&quot;</span>,<span class="string">&quot;1000&quot;</span>,<span class="string">&quot;1001&quot;</span>,<span class="string">&quot;1010&quot;</span>,<span class="string">&quot;1011&quot;</span>,<span class="string">&quot;1100&quot;</span>,<span class="string">&quot;1101&quot;</span>,<span class="string">&quot;1110&quot;</span>,<span class="string">&quot;1111&quot;</span>&#125;;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">randmd5</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">		<span class="keyword">private</span>:</span><br><span class="line">		string sd,binstr;</span><br><span class="line">		ui strlength,atemp,btemp,ctemp,dtemp,A,B,C,D,cur;</span><br><span class="line">		ui strByte[<span class="number">1024</span>];</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">mainLoop</span><span class="params">(ui M[])</span></span>;</span><br><span class="line">		<span class="function">string <span class="title">change</span><span class="params">(ui a,<span class="keyword">const</span> string str16[<span class="number">16</span>])</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">getMD5</span><span class="params">(string source)</span></span>;</span><br><span class="line">		<span class="keyword">public</span>:</span><br><span class="line">		<span class="built_in">randmd5</span>(string s,ui a,ui b,ui c,ui d);</span><br><span class="line">		<span class="built_in">randmd5</span>(string s=<span class="string">&quot;randmd5&quot;</span>);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">srand</span><span class="params">(string s)</span></span>;</span><br><span class="line">		<span class="keyword">typedef</span> ui result_type;</span><br><span class="line">		<span class="function">ui <span class="title">min</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function">ui <span class="title">max</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function">ui <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> len=<span class="number">32</span>)</span></span>;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="function">ui <span class="title">randmd5::min</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="number">0</span>;&#125;</span><br><span class="line">	<span class="function">ui <span class="title">randmd5::max</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="number">0xffffffff</span>u;&#125;</span><br><span class="line">	randmd5::<span class="built_in">randmd5</span>(string s,ui a,ui b,ui c,ui d):<span class="built_in">A</span>(a),<span class="built_in">B</span>(b),<span class="built_in">C</span>(c),<span class="built_in">D</span>(d)&#123;<span class="built_in">getMD5</span>(s);&#125;</span><br><span class="line">	randmd5::<span class="built_in">randmd5</span>(string s):<span class="built_in">A</span>(<span class="number">0x12345670</span>u),<span class="built_in">B</span>(<span class="number">0x89abcdef</span>u),<span class="built_in">C</span>(<span class="number">0x20210118</span>u),<span class="built_in">D</span>(<span class="number">0xccfccfac</span>u)&#123;<span class="built_in">getMD5</span>(s);&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">randmd5::srand</span><span class="params">(string s)</span></span>&#123;<span class="built_in">getMD5</span>(s);&#125;</span><br><span class="line">	<span class="function">ui <span class="title">randmd5::operator</span><span class="params">()</span><span class="params">(<span class="keyword">int</span> len)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(len&lt;<span class="number">1</span>||len&gt;<span class="number">32</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		ui nRet=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;nRet=(nRet*<span class="number">2</span>)+(binstr[cur]-<span class="string">&#x27;0&#x27;</span>);cur++;<span class="keyword">if</span>(cur==<span class="number">128</span>) <span class="built_in">getMD5</span>(sd+<span class="built_in"><span class="keyword">char</span></span>(<span class="number">7</span>));&#125;</span><br><span class="line">		<span class="keyword">return</span> nRet;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">randmd5::mainLoop</span><span class="params">(ui M[])</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	    ui f,g,a=atemp,b=btemp,c=ctemp,d=dtemp;</span><br><span class="line">	    <span class="keyword">for</span>(ui i=<span class="number">0</span>;i&lt;<span class="number">64</span>;i++)&#123;<span class="keyword">if</span>(i&lt;<span class="number">16</span>) f=<span class="built_in">F</span>(b,c,d),g=i;<span class="keyword">else</span> <span class="keyword">if</span>(i&lt;<span class="number">32</span>) f=<span class="built_in">G</span>(b,c,d),g=(<span class="number">5</span>*i+<span class="number">1</span>)%<span class="number">16</span>;<span class="keyword">else</span> <span class="keyword">if</span>(i&lt;<span class="number">48</span>) f=<span class="built_in">H</span>(b,c,d),g=(<span class="number">3</span>*i+<span class="number">5</span>)%<span class="number">16</span>;<span class="keyword">else</span> f=<span class="built_in">I</span>(b,c,d),g=(<span class="number">7</span>*i)%<span class="number">16</span>;ui tmp=d;d=c;c=b;a+=f+k[i]+M[g];b+=((a&lt;&lt;s[i])|(a&gt;&gt;<span class="number">32</span>-s[i]));a=tmp;&#125;</span><br><span class="line">	    atemp+=a;btemp+=b;ctemp+=c;dtemp+=d;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">string <span class="title">randmd5::change</span><span class="params">(ui a,<span class="keyword">const</span> string str16[<span class="number">16</span>])</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	    ui b;string str=<span class="string">&quot;&quot;</span>;</span><br><span class="line">	    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)&#123;b=((a&gt;&gt;i*<span class="number">8</span>)%(<span class="number">1</span>&lt;&lt;<span class="number">8</span>))&amp;<span class="number">0xff</span>;str+=str16[b/<span class="number">16</span>];str+=str16[b%<span class="number">16</span>];&#125;</span><br><span class="line">	    <span class="keyword">return</span> str;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">randmd5::getMD5</span><span class="params">(string source)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">	    atemp=A;btemp=B;ctemp=C;dtemp=D;</span><br><span class="line">	    <span class="keyword">if</span>(source.<span class="built_in">size</span>()&gt;<span class="number">4000</span>) source=source.<span class="built_in">substr</span>(<span class="number">0</span>,<span class="number">4000</span>);</span><br><span class="line">	    ui num=((source.<span class="built_in">length</span>()+<span class="number">8</span>)/<span class="number">64</span>)+<span class="number">1</span>;strlength=num*<span class="number">16</span>;</span><br><span class="line">	    <span class="keyword">for</span>(ui i=<span class="number">0</span>;i&lt;num*<span class="number">16</span>;i++) strByte[i]=<span class="number">0</span>;</span><br><span class="line">	    <span class="keyword">for</span>(ui i=<span class="number">0</span>;i&lt;source.<span class="built_in">length</span>();i++) strByte[i&gt;&gt;<span class="number">2</span>]|=(source[i])&lt;&lt;((i%<span class="number">4</span>)*<span class="number">8</span>);</span><br><span class="line">	    strByte[source.<span class="built_in">length</span>()&gt;&gt;<span class="number">2</span>]|=<span class="number">0x80</span>&lt;&lt;(((source.<span class="built_in">length</span>()%<span class="number">4</span>))*<span class="number">8</span>);strByte[num*<span class="number">16</span><span class="number">-2</span>]=source.<span class="built_in">length</span>()*<span class="number">8</span>;</span><br><span class="line">	    <span class="keyword">for</span>(ui i=<span class="number">0</span>;i&lt;strlength/<span class="number">16</span>;i++)&#123;ui num[<span class="number">16</span>];<span class="keyword">for</span>(ui j=<span class="number">0</span>;j&lt;<span class="number">16</span>;j++) num[j]=strByte[i*<span class="number">16</span>+j];<span class="built_in">mainLoop</span>(num);&#125;</span><br><span class="line">	    cur=<span class="number">0</span>;binstr=<span class="built_in">change</span>(atemp,bin16)+<span class="built_in">change</span>(btemp,bin16)+<span class="built_in">change</span>(ctemp,bin16)+<span class="built_in">change</span>(dtemp,bin16);sd=<span class="built_in">change</span>(atemp,str16)+<span class="built_in">change</span>(btemp,str16)+<span class="built_in">change</span>(ctemp,str16)+<span class="built_in">change</span>(dtemp,str16);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">using</span> _randmd5::randmd5;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag"># 代码</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/OI%E7%9A%84%E7%A7%98%E5%AF%86%E7%94%9F%E6%B4%BB/" rel="prev" title="OI的秘密生活">
+                  <i class="fa fa-chevron-left"></i> OI的秘密生活
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/generals/" rel="next" title="generals">
+                  generals <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">positive1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;all&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

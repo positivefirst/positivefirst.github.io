@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;positivefirst.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="只需输入一个字符串作为随机数种子。如有必要，其它参数可以在代码开头改。 Beep()的音色确实不好听。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="音乐生成器">
+<meta property="og:url" content="http://positivefirst.github.io/%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E5%99%A8/index.html">
+<meta property="og:site_name" content="静心立志 进取豁达">
+<meta property="og:description" content="只需输入一个字符串作为随机数种子。如有必要，其它参数可以在代码开头改。 Beep()的音色确实不好听。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-29T12:36:28.000Z">
+<meta property="article:modified_time" content="2021-07-31T05:09:16.000Z">
+<meta property="article:author" content="positive1">
+<meta property="article:tag" content="代码">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://positivefirst.github.io/%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E5%99%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;positivefirst.github.io&#x2F;%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E5%99%A8&#x2F;&quot;,&quot;path&quot;:&quot;音乐生成器&#x2F;&quot;,&quot;title&quot;:&quot;音乐生成器&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>音乐生成器 | 静心立志 进取豁达</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">静心立志 进取豁达</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-收藏夹"><a href="/collections/" rel="section"><i class="fa fa-star fa-fw"></i>收藏夹</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-班级日记"><a href="/tags/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B0/" rel="section"><i class="fa fa-book fa-fw"></i>班级日记</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">positive1</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="positive1">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="静心立志 进取豁达">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          音乐生成器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-29 20:36:28" itemprop="dateCreated datePublished" datetime="2021-07-29T20:36:28+08:00">2021-07-29</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>只需输入一个字符串作为随机数种子。如有必要，其它参数可以在代码开头改。</p>
+<p><code>Beep()</code>的音色确实不好听。</p>
+<span id="more"></span>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//C++11</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;random&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> random_main true<span class="comment">//随机主旋律 </span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> la=<span class="number">880</span>;<span class="comment">//la的频率 </span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> fu=<span class="number">400</span>;<span class="comment">//一个音符的持续时间 </span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">30</span>;<span class="comment">//乐句数 </span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> lo=<span class="number">5</span>,hi=<span class="number">18</span>;<span class="comment">//允许产生的最低音（低音so）和最高音（高音fa） </span></span><br><span class="line"><span class="comment">//低音记作1~7，中音记作8~14，高音记作15~21 </span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> q=<span class="number">1.0594630943592953</span>;<span class="comment">//2^(1/12)</span></span><br><span class="line"></span><br><span class="line">mt19937 e;</span><br><span class="line"><span class="keyword">int</span> me[<span class="number">22</span>],pro[<span class="number">22</span>],scr[<span class="number">4</span>]=&#123;<span class="number">10</span>,<span class="number">7</span>,<span class="number">4</span>,<span class="number">1</span>&#125;,fl,fr;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;tm[maxn],t[maxn],v;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vInit</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vAdd</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">bool</span> dir)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vMake</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp;ma,<span class="keyword">int</span> len,<span class="keyword">int</span> beg,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> plus=<span class="number">5</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vCopy</span><span class="params">(<span class="keyword">int</span> ia,<span class="keyword">int</span> ib)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vTime</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,tmp,now,len;</span><br><span class="line">	string s;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span> sd=<span class="number">20210719</span>;</span><br><span class="line">	<span class="built_in">vInit</span>(<span class="number">6</span>,la/<span class="number">2</span>);</span><br><span class="line">	<span class="built_in">vInit</span>(<span class="number">13</span>,la);</span><br><span class="line">	<span class="built_in">vInit</span>(<span class="number">20</span>,la*<span class="number">2</span>);</span><br><span class="line">	cin&gt;&gt;s;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		sd+=s[i];</span><br><span class="line">		sd^=sd&lt;&lt;<span class="number">13</span>;</span><br><span class="line">		sd^=sd&gt;&gt;<span class="number">17</span>;</span><br><span class="line">		sd^=sd&lt;&lt;<span class="number">5</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	e.<span class="built_in">seed</span>(sd);</span><br><span class="line">	len=<span class="built_in">e</span>()%<span class="number">5</span>+<span class="number">6</span>;</span><br><span class="line">	fr=<span class="built_in">e</span>()%<span class="number">7</span>+<span class="number">8</span>;</span><br><span class="line">	fl=<span class="built_in">e</span>()%(fr<span class="number">-7</span>)+<span class="number">8</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++) <span class="built_in">swap</span>(scr[i],scr[<span class="built_in">e</span>()%(i+<span class="number">1</span>)]);</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">if</span> !random_main</span></span><br><span class="line">	len=<span class="number">8</span>,fl=fr=<span class="number">8</span>;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;mnc&#123;<span class="number">6</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">10</span>,<span class="number">9</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;,mnct&#123;<span class="number">200</span>,<span class="number">200</span>,<span class="number">200</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">100</span>,<span class="number">600</span>,<span class="number">400</span>&#125;;</span><br><span class="line">	tm[<span class="number">0</span>]=mnc;</span><br><span class="line">	t[<span class="number">0</span>]=mnct;</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">	<span class="built_in">vMake</span>(tm[<span class="number">0</span>],len,<span class="built_in">e</span>()%<span class="number">7</span>+<span class="number">6</span>,fl,fr);</span><br><span class="line">	<span class="built_in">vTime</span>(<span class="number">0</span>);</span><br><span class="line">	<span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">	<span class="built_in">vMake</span>(v,maxn,tm[<span class="number">0</span>][<span class="number">0</span>],fl,fr);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;maxn;i++) tm[i].<span class="built_in">push_back</span>(v[i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;maxn/<span class="number">4</span>;i++) <span class="built_in">vCopy</span>(<span class="built_in">e</span>()%(maxn<span class="number">-1</span>)+<span class="number">1</span>,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;maxn<span class="number">-1</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(tm[i].<span class="built_in">size</span>()&gt;<span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(i&gt;<span class="number">1</span>&amp;&amp;tm[i<span class="number">-2</span>].<span class="built_in">size</span>()==tm[i<span class="number">-1</span>].<span class="built_in">size</span>())</span><br><span class="line">		&#123;</span><br><span class="line">			tmp=tm[i<span class="number">-2</span>].<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">			<span class="keyword">if</span>(tm[i<span class="number">-2</span>][tmp]&gt;tm[i<span class="number">-1</span>][tmp]) tm[i][<span class="number">0</span>]=<span class="built_in">min</span>(tm[i][<span class="number">0</span>],tm[i<span class="number">-1</span>][tmp]);</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(tm[i<span class="number">-2</span>][tmp]&lt;tm[i<span class="number">-1</span>][tmp]) tm[i][<span class="number">0</span>]=<span class="built_in">max</span>(tm[i][<span class="number">0</span>],tm[i<span class="number">-1</span>][tmp]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">vMake</span>(tm[i],(<span class="built_in">e</span>()%<span class="number">2</span>==<span class="number">0</span>)?len:(len/<span class="number">2</span>),tm[i][<span class="number">0</span>],fl,fr);</span><br><span class="line">		<span class="built_in">vTime</span>(i);</span><br><span class="line">		<span class="keyword">if</span>(tm[i].<span class="built_in">size</span>()&lt;len||<span class="built_in">e</span>()%<span class="number">4</span>==<span class="number">0</span>) <span class="built_in">vCopy</span>(i+<span class="number">1</span>,i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">vMake</span>(tm[maxn<span class="number">-1</span>],len,tm[<span class="number">0</span>][<span class="number">0</span>],lo,<span class="number">10</span>,<span class="number">10</span>);</span><br><span class="line">	<span class="built_in">vTime</span>(maxn<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;maxn;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//for(j=0;j&lt;t[i].size();j++) cout&lt;&lt;tm[i][j]&lt;&lt;&quot; &quot;;</span></span><br><span class="line">		<span class="comment">//cout&lt;&lt;endl;</span></span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;tm[i].<span class="built_in">size</span>();j++) <span class="built_in">Beep</span>(me[tm[i][j]],t[i][j]);</span><br><span class="line">		<span class="built_in">Beep</span>(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">		<span class="built_in">Sleep</span>(fu*<span class="number">2</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vInit</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	me[i+<span class="number">1</span>]=b*q*q;</span><br><span class="line">	me[i]=b;</span><br><span class="line">	me[i<span class="number">-1</span>]=b/q/q;</span><br><span class="line">	me[i<span class="number">-2</span>]=me[i<span class="number">-1</span>]/q/q;</span><br><span class="line">	me[i<span class="number">-3</span>]=me[i<span class="number">-2</span>]/q;</span><br><span class="line">	me[i<span class="number">-4</span>]=me[i<span class="number">-3</span>]/q/q;</span><br><span class="line">	me[i<span class="number">-5</span>]=me[i<span class="number">-4</span>]/q/q;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vAdd</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">bool</span> dir)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> j;</span><br><span class="line">	<span class="keyword">for</span>(j=lo;j&lt;=hi;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		pro[j]/=<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(!pro[j]) pro[j]=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span>(dir)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=<span class="number">3</span>;j++) <span class="keyword">if</span>(i+j&lt;=hi) pro[i+j]+=scr[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=<span class="number">3</span>;j++) <span class="keyword">if</span>(i-j&gt;=lo) pro[i-j]+=scr[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vMake</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp;ma,<span class="keyword">int</span> len,<span class="keyword">int</span> beg,<span class="keyword">int</span> l,<span class="keyword">int</span> r,<span class="keyword">int</span> plus)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,tmp,sum;</span><br><span class="line">	ma.<span class="built_in">clear</span>();</span><br><span class="line">	ma.<span class="built_in">push_back</span>(beg);</span><br><span class="line">	<span class="built_in">memset</span>(pro,<span class="number">0</span>,<span class="keyword">sizeof</span> pro);</span><br><span class="line">	<span class="built_in">vAdd</span>(beg,<span class="literal">true</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		sum=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=l;j&lt;=r;j++) pro[j]+=plus;</span><br><span class="line">		<span class="keyword">for</span>(j=lo;j&lt;=hi;j++) sum+=pro[j];</span><br><span class="line">		<span class="keyword">do</span></span><br><span class="line">		&#123;</span><br><span class="line">			tmp=<span class="built_in">e</span>()%sum;</span><br><span class="line">			<span class="keyword">for</span>(j=lo;j&lt;=hi&amp;&amp;tmp&gt;=pro[j];j++) tmp-=pro[j];</span><br><span class="line">		&#125;<span class="keyword">while</span>(<span class="built_in">abs</span>(j-ma[i<span class="number">-1</span>])&gt;<span class="number">5</span>);</span><br><span class="line">		ma.<span class="built_in">push_back</span>(j);</span><br><span class="line">		<span class="built_in">vAdd</span>(j,(ma[i<span class="number">-1</span>]&lt;=j&amp;&amp;j&lt;hi)||j==lo);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vCopy</span><span class="params">(<span class="keyword">int</span> ia,<span class="keyword">int</span> ib)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	vector&lt;<span class="keyword">int</span>&gt;&amp;a=tm[ia],&amp;b=tm[ib];</span><br><span class="line">	<span class="keyword">int</span> i,len=b.<span class="built_in">size</span>(),tmp=len;</span><br><span class="line">	<span class="keyword">if</span>(len&gt;<span class="number">4</span>) tmp-=<span class="built_in">e</span>()%(len/<span class="number">2</span>);</span><br><span class="line">	a=b;</span><br><span class="line">	<span class="built_in">vMake</span>(v,tmp,b[len-tmp],fl,fr);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;tmp;i++) a[len-tmp+i]=v[i];</span><br><span class="line">	t[ia]=t[ib];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vTime</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> j;</span><br><span class="line">	t[i].<span class="built_in">clear</span>();</span><br><span class="line">	<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;tm[i].<span class="built_in">size</span>();j++) t[i].<span class="built_in">push_back</span>((j==<span class="number">0</span>||<span class="built_in">abs</span>(tm[i][j]-tm[i][j<span class="number">-1</span>])&gt;<span class="number">2</span>)?fu:(fu/<span class="number">2</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag"># 代码</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Hello-ZJJ/" rel="prev" title="Hello ZJJ">
+                  <i class="fa fa-chevron-left"></i> Hello ZJJ
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8E%A2%E7%A7%98/" rel="next" title="位运算探秘">
+                  位运算探秘 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">positive1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;all&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

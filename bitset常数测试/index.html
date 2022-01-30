@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;positivefirst.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="有一天，我在SOJ上卡常，发现下面两种统计now的区间$[l,r)$中$1$的个数的方法，运行时间有明显差异。 12(now&gt;&gt;l).count()-(now&gt;&gt;r).count();((now^(now&gt;&gt;r&lt;&lt;r))&gt;&gt;l).count();  为了今后更好地卡常，我在洛谷和SOJ上测试了bitset的几种操作，并记录所用时间。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bitset常数测试">
+<meta property="og:url" content="http://positivefirst.github.io/bitset%E5%B8%B8%E6%95%B0%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="静心立志 进取豁达">
+<meta property="og:description" content="有一天，我在SOJ上卡常，发现下面两种统计now的区间$[l,r)$中$1$的个数的方法，运行时间有明显差异。 12(now&gt;&gt;l).count()-(now&gt;&gt;r).count();((now^(now&gt;&gt;r&lt;&lt;r))&gt;&gt;l).count();  为了今后更好地卡常，我在洛谷和SOJ上测试了bitset的几种操作，并记录所用时间。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-16T12:50:29.000Z">
+<meta property="article:modified_time" content="2022-01-18T13:56:05.873Z">
+<meta property="article:author" content="positive1">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://positivefirst.github.io/bitset%E5%B8%B8%E6%95%B0%E6%B5%8B%E8%AF%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;positivefirst.github.io&#x2F;bitset%E5%B8%B8%E6%95%B0%E6%B5%8B%E8%AF%95&#x2F;&quot;,&quot;path&quot;:&quot;bitset常数测试&#x2F;&quot;,&quot;title&quot;:&quot;bitset常数测试&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>bitset常数测试 | 静心立志 进取豁达</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">静心立志 进取豁达</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-收藏夹"><a href="/collections/" rel="section"><i class="fa fa-star fa-fw"></i>收藏夹</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-班级日记"><a href="/tags/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B0/" rel="section"><i class="fa fa-book fa-fw"></i>班级日记</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">positive1</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/bitset%E5%B8%B8%E6%95%B0%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="positive1">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="静心立志 进取豁达">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          bitset常数测试
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-01-16 20:50:29" itemprop="dateCreated datePublished" datetime="2022-01-16T20:50:29+08:00">2022-01-16</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>有一天，我在SOJ上卡常，发现下面两种统计<code>now</code>的区间$[l,r)$中$1$的个数的方法，运行时间有明显差异。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(now&gt;&gt;l).<span class="built_in">count</span>()-(now&gt;&gt;r).<span class="built_in">count</span>();</span><br><span class="line">((now^(now&gt;&gt;r&lt;&lt;r))&gt;&gt;l).<span class="built_in">count</span>();</span><br></pre></td></tr></table></figure>
+
+<p>为了今后更好地卡常，我在洛谷和SOJ上测试了<code>bitset</code>的几种操作，并记录所用时间。</p>
+<span id="more"></span>
+
+<p>用随机数填充长为$10^5$的<code>bitset</code>，之后做某些（我觉得是）$O(\frac{n}{\omega})$的操作$10^5$次。用$5$个随机数种子重复测试，用时取平均值。测试环境均为C++14，开O2。</p>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> n=<span class="number">100000</span>;</span><br><span class="line"></span><br><span class="line">bitset&lt;n&gt;a,b[<span class="number">16</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">xorb</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=b[x%<span class="number">16</span>];&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ls5</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&lt;&lt;<span class="number">5</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rs5</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&gt;&gt;<span class="number">5</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ls500</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&lt;&lt;<span class="number">500</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rs500</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&gt;&gt;<span class="number">500</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ls50000</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&lt;&lt;<span class="number">50000</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rs50000</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&gt;&gt;<span class="number">50000</span>;&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ls</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&lt;&lt;(x%<span class="number">16</span>+<span class="number">1</span>);&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&gt;&gt;(x%<span class="number">16</span>+<span class="number">1</span>);&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lscount</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&lt;&lt;(a.<span class="built_in">count</span>()%<span class="number">16</span>+<span class="number">1</span>);&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lsand</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&lt;&lt;(x%<span class="number">16</span>+<span class="number">1</span>)&amp;b[x%<span class="number">16</span>];&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lsor</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&lt;&lt;(x%<span class="number">16</span>+<span class="number">1</span>)|b[x%<span class="number">16</span>];&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lsxor</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=a&lt;&lt;(x%<span class="number">16</span>+<span class="number">1</span>)^b[x%<span class="number">16</span>];&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">lscompl</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;a^=~a&lt;&lt;(x%<span class="number">16</span>+<span class="number">1</span>);&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test_time</span><span class="params">(function&lt;<span class="keyword">void</span>(<span class="keyword">int</span>)&gt;f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	a=b[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">clock_t</span> start = <span class="built_in">clock</span>();</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">f</span>(i);</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">clock</span>() - start&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="function">mt19937 <span class="title">e</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">16</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n/<span class="number">32</span>;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			b[i]&lt;&lt;=<span class="number">32</span>;</span><br><span class="line">			b[i]|=<span class="built_in">e</span>();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">test_time</span>(xorb);</span><br><span class="line">	<span class="built_in">test_time</span>(ls5);</span><br><span class="line">	<span class="built_in">test_time</span>(rs5);</span><br><span class="line">	<span class="built_in">test_time</span>(ls500);</span><br><span class="line">	<span class="built_in">test_time</span>(rs500);</span><br><span class="line">	<span class="built_in">test_time</span>(ls50000);</span><br><span class="line">	<span class="built_in">test_time</span>(rs50000);</span><br><span class="line">	<span class="built_in">test_time</span>(ls);</span><br><span class="line">	<span class="built_in">test_time</span>(rs);</span><br><span class="line">	<span class="built_in">test_time</span>(lscount);</span><br><span class="line">	<span class="built_in">test_time</span>(lsand);</span><br><span class="line">	<span class="built_in">test_time</span>(lsor);</span><br><span class="line">	<span class="built_in">test_time</span>(lsxor);</span><br><span class="line">	<span class="built_in">test_time</span>(lscompl);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在表格中按位或<code>|</code>无法正常显示，故用汉字代替。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>在洛谷上的用时/ms</th>
+<th>在SOJ上的用时/ms</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>a^=b[x%16];</code></td>
+<td>64</td>
+<td>67</td>
+</tr>
+<tr>
+<td><code>a^=a&lt;&lt;5;</code></td>
+<td>218</td>
+<td>280</td>
+</tr>
+<tr>
+<td><code>a^=a&gt;&gt;5;</code></td>
+<td>215</td>
+<td>209</td>
+</tr>
+<tr>
+<td><code>a^=a&lt;&lt;500;</code></td>
+<td>231</td>
+<td>277</td>
+</tr>
+<tr>
+<td><code>a^=a&gt;&gt;500;</code></td>
+<td>216</td>
+<td>209</td>
+</tr>
+<tr>
+<td><code>a^=a&lt;&lt;50000;</code></td>
+<td>142</td>
+<td>199</td>
+</tr>
+<tr>
+<td><code>a^=a&gt;&gt;50000;</code></td>
+<td>152</td>
+<td>166</td>
+</tr>
+<tr>
+<td><code>a^=a&lt;&lt;(x%16+1);</code></td>
+<td>187</td>
+<td>267</td>
+</tr>
+<tr>
+<td><code>a^=a&gt;&gt;(x%16+1);</code></td>
+<td>181</td>
+<td>264</td>
+</tr>
+<tr>
+<td><code>a^=a&lt;&lt;(a.count()%16+1);</code></td>
+<td>241</td>
+<td>706</td>
+</tr>
+<tr>
+<td><code>a^=a&lt;&lt;(x%16+1)&amp;b[x%16];</code></td>
+<td>268</td>
+<td>371</td>
+</tr>
+<tr>
+<td><code>a^=a&lt;&lt;(x%16+1)或b[x%16];</code></td>
+<td>269</td>
+<td>348</td>
+</tr>
+<tr>
+<td><code>a^=a&lt;&lt;(x%16+1)^b[x%16];</code></td>
+<td>274</td>
+<td>373</td>
+</tr>
+<tr>
+<td><code>a^=~a&lt;&lt;(x%16+1);</code></td>
+<td>284</td>
+<td>359</td>
+</tr>
+</tbody></table>
+<p>总体上左移、右移运算慢于其他按位运算；位移的幅度越大，运算越快。在SOJ上，<code>count()</code>非常慢，左移常量慢于右移常量（这合理吗？），不过左移变量和右移变量速度基本一样。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OI/" rel="tag"># OI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Heart-of-Galaxy%E5%AD%98%E6%A1%A3%E8%A7%A3%E7%A0%81/" rel="prev" title="Heart of Galaxy存档解码">
+                  <i class="fa fa-chevron-left"></i> Heart of Galaxy存档解码
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B04/" rel="next" title="班级日记4">
+                  班级日记4 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">positive1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;all&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

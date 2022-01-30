@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;positivefirst.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="有所至，有所见，无所感">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OI的秘密生活">
+<meta property="og:url" content="http://positivefirst.github.io/OI%E7%9A%84%E7%A7%98%E5%AF%86%E7%94%9F%E6%B4%BB/index.html">
+<meta property="og:site_name" content="静心立志 进取豁达">
+<meta property="og:description" content="有所至，有所见，无所感">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-18T05:56:00.000Z">
+<meta property="article:modified_time" content="2022-01-30T12:30:00.483Z">
+<meta property="article:author" content="positive1">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://positivefirst.github.io/OI%E7%9A%84%E7%A7%98%E5%AF%86%E7%94%9F%E6%B4%BB/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;positivefirst.github.io&#x2F;OI%E7%9A%84%E7%A7%98%E5%AF%86%E7%94%9F%E6%B4%BB&#x2F;&quot;,&quot;path&quot;:&quot;OI的秘密生活&#x2F;&quot;,&quot;title&quot;:&quot;OI的秘密生活&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>OI的秘密生活 | 静心立志 进取豁达</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">静心立志 进取豁达</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-收藏夹"><a href="/collections/" rel="section"><i class="fa fa-star fa-fw"></i>收藏夹</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-班级日记"><a href="/tags/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B0/" rel="section"><i class="fa fa-book fa-fw"></i>班级日记</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NOIP2021%E6%B8%B8%E8%AE%B0"><span class="nav-text">NOIP2021游记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day0"><span class="nav-text">Day0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day1"><span class="nav-text">Day1</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSP-S2021%E6%B8%B8%E8%AE%B0"><span class="nav-text">CSP-S2021游记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E8%B5%9B"><span class="nav-text">初赛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E8%B5%9B"><span class="nav-text">复赛</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2021%E6%9A%91%E5%81%87%C2%B7%E7%88%B1%E6%A2%93%E8%8D%AB"><span class="nav-text">2021暑假·爱梓荫</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#THUSC2021%E6%B8%B8%E8%AE%B0"><span class="nav-text">THUSC2021游记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E8%AE%AD"><span class="nav-text">集训</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day0-1"><span class="nav-text">Day0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day1-1"><span class="nav-text">Day1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2"><span class="nav-text">Day2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9C%81%E9%80%892021%E6%B8%B8%E8%AE%B0"><span class="nav-text">省选2021游记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Day0%E5%8F%8A%E4%BB%A5%E5%89%8D"><span class="nav-text">Day0及以前</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day1-2"><span class="nav-text">Day1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Day2-1"><span class="nav-text">Day2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B3%E5%87%A1%E7%9A%84%E4%B8%96%E7%95%8C%E2%80%94%E2%80%94%E8%AE%B02021%E5%AF%92%E5%81%87%E9%9B%86%E8%AE%AD"><span class="nav-text">平凡的世界——记2021寒假集训</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CSP-S2020%E6%B8%B8%E8%AE%B0"><span class="nav-text">CSP-S2020游记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E8%B5%9B-1"><span class="nav-text">初赛</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E8%B5%9B-1"><span class="nav-text">复赛</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2020%E6%9A%91%E5%81%87%E6%97%A5%E8%AE%B0"><span class="nav-text">2020暑假日记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AD%A6%E6%97%A5%E8%AE%B0"><span class="nav-text">信息学日记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%A6%E6%97%A5%E8%AE%B0"><span class="nav-text">数学日记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%91%E5%AD%A6%E6%97%A5%E8%AE%B0"><span class="nav-text">科学日记</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">positive1</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/OI%E7%9A%84%E7%A7%98%E5%AF%86%E7%94%9F%E6%B4%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="positive1">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="静心立志 进取豁达">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OI的秘密生活
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-18 13:56:00" itemprop="dateCreated datePublished" datetime="2021-06-18T13:56:00+08:00">2021-06-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>有所至，有所见，无所感</p>
+<span id="more"></span>
+
+<h1 id="NOIP2021游记"><a href="#NOIP2021游记" class="headerlink" title="NOIP2021游记"></a>NOIP2021游记</h1><p>Day0=2021/11/19</p>
+<h2 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h2><p>获得成就：（在郁老师带领下）使用学校电梯。</p>
+<p>没跟大部队（虽然住同一个酒店），17:45出发，20:30到达。在高速上看到了月食的后半段。月食乃是吉兆啊！（</p>
+<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>开考前广播放了很久的音乐，类似英语听力/音乐考试音频的开头，也许是学军的上课铃。8:30开考了音乐也没停。T1很像素数筛，随便筛就能过。答案可能会超过1e7，不放心所以筛到了1.1e7,。不开O2大样例跑了0.9s。8:47做完。T2没啥思路，先去想T3。方差这东西看上去很优美，但被我在草稿纸上越算越丑。搞不出证明，那就去猜结论。于是我写出了O(玄学)的贪心和O(n!)的暴搜，然而它们都通不过样例2，大概只有n&lt;=4的分了。10:06写完（放弃）。T4的题面长度又使我坚定地认为它不可做，于是只剩下T2了。50分的DP很好想。迷茫了很久才发现可以用类似数位DP的方法，因为只有相邻的5个数位才可能互相影响，没有必要把m个数位都记下来。4维状态，5重循环。12:24过了两个样例。可是后来手造了一个n=30的样例就发现50分和100分代码输出不一样。到底谁是错的呢？我相信是后者，于是暴力试错DP式子，终于在12:51使两份代码输出一样了。最后两分钟抱着观赏的心态仔细看了T4，发现一个错别字（“飞行棋”写成“飞行器”）。</p>
+<p>预计100+100+12+0=212。出考场，应老师说：“怎么样？自闭了吗？？适应就好了。”</p>
+<h1 id="CSP-S2021游记"><a href="#CSP-S2021游记" class="headerlink" title="CSP-S2021游记"></a>CSP-S2021游记</h1><h2 id="初赛"><a href="#初赛" class="headerlink" title="初赛"></a>初赛</h2><p>2021/9/19</p>
+<p>早上8:00到学校机房，打开stellarium放松身心。8:35郁老师带我们从机房走到考场（只要穿过一扇门）。开考后竟然发下来两张答题卡，看上去一张给人改，一张给机器改。阅读程序第一题的acos(0.5)很劝退，看了好久才反应过来是π/3。看到第二题的solve2，模糊地感觉是蔡老师讲过的O(nlogn)求最大子段和，虽然当时没听懂。第三题模拟base64果断放弃（居然蒙对了那道4分的选择）。完善程序第二题洛谷日报上有，可惜我没有好好看。似乎出题人默认我们会笛卡尔树，但我不会，还好根据题面构造出来了。第4、5小题是蒙的，全错。时间很紧，如果没放弃base64可能就来不及涂卡了。考完先回机房对答案，吃饭时已经快12:00了。下午回教室上课。</p>
+<p>预计88，实际86.5。</p>
+<h2 id="复赛"><a href="#复赛" class="headerlink" title="复赛"></a>复赛</h2><p>2021/10/23</p>
+<p>8:45坐车出发，接上ZQ。11:50到达，12:50吃完中饭。然后去校门口和同学聊天。NZ说入门组是“四道模拟”，ZZY咬定下午会出DP。一直等到13:40郁老师过来。14:00到机房，14:30开始考试。早了近10分钟就公布了密码。14:45开始做T1，读完样例后感觉可以三分，但单峰证不出来，有点害怕，所以lmid,rmid改为随机选取（类似三分地跑200轮）。编译选项里没看到-std=c++14（真的默认C++14了？），不敢用mt19937，于是手写随机数生成器，完全忘记了还有个叫rand的函数可以用。15:39开始做T2。题目背景明显是在暗示区间DP。想起来不久前ZXB搬到入门组模拟赛的CF888F，引入额外的0/1维防止重复划分。样例2过了，但是样例3错得离谱。我灵机一动把样例2的字符串翻转，答案应该不变，可是程序输出0，这样就可以把子区间的DP值都输出来debug了。一个一个子区间手算验证，然后在代码里发现了两个±1的bug。17:25才调完。n=100的样例竟然要跑0.5s，明明是O(n^3)的，也没时间卡常了。T3只写了O(2^n)搜索，合法方案数少（例如无解）的时候似乎跑得比较快，数据水一点说不定能多混一点分。T4就完全空着了。估分100+100+40+0=240。我在前1/4的考试时间里喝掉了3/4的水，但是出考场的时候水还没喝完。22:00到家。和去年CSP比起来，我真的有什么进步吗？恐怕只是敲键盘快了那么一点点吧。</p>
+<p>实际得分85+100+48+0=233。T1三分完全是假的，用洛谷民间数据测只得了45分，没想到CCF数据能造那么好。T3多的分大概是判无解。</p>
+<h1 id="2021暑假·爱梓荫"><a href="#2021暑假·爱梓荫" class="headerlink" title="2021暑假·爱梓荫"></a>2021暑假·爱梓荫</h1><p>开营仪式上报告厅几乎坐满，想不到人这么多。第一次听到郁老师被称为金牌教练，莫名激动。</p>
+<p>开营仪式很快结束，下午开始上课。郁老师走进来问有没有人是电教，然后让电教（ZQ）把电脑打开。沈老师进来后，满意地让ZQ关电脑。</p>
+<p>第一天食堂只做三个菜，后来几天似乎多一些。饭后我、ZQ、JQX、ZYF在体育馆玩。ZQ发现一个弹性十足的小绿球（第二天便据为己有）。体育馆有一面临时竖起来的乒乓球海报，一层楼高。我们分两组，在海报的前后两边，把球扔过海报顶，争取扔给队友。后来几天体育馆里有乒乓球比赛，于是我们拿篮球到烈日下玩。物理大师JQX用一个篮球去撞另一个，拦截三分球成功率接近100％。</p>
+<p>课间休息也足够踢足球，但容易误伤观众。ZYe和CSY守门（一楼楼梯口），好几个人从楼梯下往上射门。有人直接把球踢到二楼，球从楼梯上滚回一楼，于是进球了（？）</p>
+<p>ZQ在操场上发现一串钥匙，竟用其中一把打开了足球场的门锁，并把门锁藏了起来。次日我们四个就去里面踢球。足球找不到，踢篮球也不错。从足球场出来时（几乎）被抓了个正着，然后我们就面不改色地否认藏了门锁。</p>
+<p>闭幕式上金牌教练换成了符老师。ZQ在报告厅玩那个小绿球。因为地面是斜的，球只要出手基本拿不回来（要到前排座位去捡，然而ZQ的座位非常靠后）。</p>
+<h1 id="THUSC2021游记"><a href="#THUSC2021游记" class="headerlink" title="THUSC2021游记"></a>THUSC2021游记</h1><p>Day0=2021/5/14</p>
+<h2 id="集训"><a href="#集训" class="headerlink" title="集训"></a>集训</h2><p>2021/5/9~2021/5/13</p>
+<p>周末作业还没做完，就来集训了……</p>
+<p>说一声“我是蛟川的”就可以进/出校门，似乎没有别的身份验证。进校门，直走，没法往前时就往左偏一些，就到了机房。机房里时常不能上外网，一直不能登（我的）QQ。</p>
+<p>听说厕所是稀缺资源，如果真是这样，那机房就太幸运了——离厕所仅一步之遥。厕所旁有个垃圾桶，里面既有空塑料瓶又有餐巾纸，没有垃圾分类的迹象。</p>
+<p>上午考试，下午讲解。吃饭时间是12:00~13:30和17:00~18:30，没法去食堂（因为没有卡），所以到校外去吃。我出门左转后一直直走（不用担心迷路），10分钟后发现了一家餐馆。出机房到回来，花了40分钟。后来胆子大了，出校门后绕来绕去，竟然发现了三江源拉面，不过来回要花更长时间。</p>
+<p>校园里播放音乐的数量、持续时间都比初中多。眼保健操音乐以前应该听到过。</p>
+<p>好多人在玩&lt;arealme.com&gt;和&lt;acwing.com&gt;。ZYC还玩MC。所谓“翻大车”事件特别多。</p>
+<h2 id="Day0-1"><a href="#Day0-1" class="headerlink" title="Day0"></a>Day0</h2><p>14:20上车，车上有约一半人是物理竞赛的（还看到了杜老师）。另外还有雅礼的人。车上很安静，我没多久就开始闭眼休息。约3小时后到宾馆。我和YHX一个房间，在一楼，有个小院子。树篱把远处的灯光切碎了，投在通向院子的玻璃门上，有种“藻荇交横”的感觉。我、SKC、MZ和郁老师晚餐是海鲜面。聊天时听到了不少关于学校、关于老师的新鲜事。我10:30上床，等YHX关灯，大概已经11点多了。</p>
+<h2 id="Day1-1"><a href="#Day1-1" class="headerlink" title="Day1"></a>Day1</h2><p>7:10起床。去学校报到，发现我们所有人都在紫金港，所以要换宾馆。去紫金港的路上，WZF和MZ疯狂互膜：“WZF阿克壹欧壹”“ZM（没错，两个字反过来）牛逼”……后来住到了和省选时一样的宾馆（考试地点也一样）。中午就在学校里吃。餐具回收用传送带，看上去很高级。</p>
+<p>Ubuntu系统？！吓死我了。于是举手向工作人员学习编译代码。有试机场，T1是A+B，T2T3是模拟，码量还不小，就不去写了。考试推迟15min。T1想了好久才发现不可做，写了5分的暴力，调了好久才过样例。T2看上去可做，线段树合并，2800字节。但一直不知道WA在哪里。改着改着，交着交着，分数越来越低，从一开始50分降到40分，又降到30分。T3也只打了暴力，20分。最后15min，去看T4，也不可做。</p>
+<p>晚上YHX讲Linux的重要性和工程题的概念。然后PJQ在自己电脑上演示Linux具体操作。我和YHX、PJQ、XYM吃外卖（好像是KFC），我后来又吃了一袋面包，晚饭就草率地解决了——早知道就跟郁老师去吃了。10:40关灯睡觉。</p>
+<h2 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h2><p>7:00起床。比赛推迟了30min。传说中的“1道题”分8个小题，300分。编译文件好复杂，首页的提示看了好久，终于摸索出来；调试更是困难，因为没有标准输入输出，只能靠RE来显示信息，标记程序运行位置。T1花了2h。另外2h做T2，但是题目理解错了，一直WA到考试结束。最后只拿了T1的40分。</p>
+<p>中午仍在学校吃。回西溪校区的路上，应老师坐在我旁边，一直教坐前一排的XYM玩游戏，很专业的样子。下午出题人讲解Day2，吐槽环节持续了好久。出题人竟然在下发材料里玩白色文字。然后放了一些介绍图像渲染的视频，还放清华宣传片。中途郁老师带我们到校园中合影，跑回报告厅时刚开始颁奖。打印证书的打印机竟然坏掉了。我没拿约，在我校参加的人里垫底了。5:30结束，比预计晚1h。8:30到家。</p>
+<h1 id="省选2021游记"><a href="#省选2021游记" class="headerlink" title="省选2021游记"></a>省选2021游记</h1><p>Day0=2021/4/9</p>
+<h2 id="Day0及以前"><a href="#Day0及以前" class="headerlink" title="Day0及以前"></a>Day0及以前</h2><p>仔细看看报名网站上的要求，其实以我的分数是没资格参加的。在离报名截止只剩一个半小时的时候，郁老师突然打电话过来让我报名。不知怎的，报名成功了。</p>
+<p>14:20坐车出发，满心欢喜地逃脱了英语听写。车上有17个学生（还有郁老师和应老师），不少人开着笔记本电脑。一开始车上充满了学术词汇，后来渐渐地没了声音。有人打游戏，有人看视频，有人听音乐。很不幸，我的座位下方有个凸起的东西，和地板是一体的，使我不能把腿伸开，只能蜷缩着（腿上还压着个书包）。腿受罪三个多小时，下车后几乎走不动。</p>
+<p>ZYY和我住一个房间。ZYY在电脑上津津有味地玩某个棋类游戏，有时还自言自语（吓我一跳）。而我坐在衣柜里写学校作业。晚上郁老师叫来外卖，我们同年级四个人一起吃。菜很好吃，但没有饭（可能被别人错拿走了）。只有一把椅子，大家索性都站着吃。吃了快一个小时，实在吃不下，还没吃完。22:18就睡觉了，难得这么早；6:30被ZYY的手机闹铃吵醒，难得这么晚。</p>
+<h2 id="Day1-2"><a href="#Day1-2" class="headerlink" title="Day1"></a>Day1</h2><p>没想到步行十分钟，就从宾馆到了考场。考试开始前在电脑里发现了Python，于是打开来玩。<br>8:30开始考试。T1竟然可做，9:30写完。大小样例都过了，但不确定做法有没有假。T2基本在干n=m=3的情况。写代码难，造数据更难。手算结合Python，总共拍了几十组数据。在10:30和11:00分别找到了hack成功的数据。最后的做法是直接枚举$a[2][2]$，计算量$T\times10^6\times16$，有可能TLE，也有可能WA（我已经无力hack下去了）。码量达到了惊人的2510字节。T3从12:00才开始做，只会按题意模拟。考试结束前不到10分钟突然发现T1的数组开小，还好改回来了。13:00考试结束。</p>
+<p>预计100+20+16。</p>
+<p>中午我们四个人和郁老师在西贝莜面村吃，没想到符老师不久也来这里吃。下午符老师在他的房间分年级找人谈话，大概是说今天（初二）有100分就行，晚上要去复习一下模板。ZYY一回到宾馆就在床上看手机。晚上六点左右，好像可以看选手代码了，于是他开始看电脑。我基本一直在写作业，没有看任何代码。</p>
+<h2 id="Day2-1"><a href="#Day2-1" class="headerlink" title="Day2"></a>Day2</h2><p>早上下雨，问酒店借了几把伞。ZYY竟不愿打伞（因为要两个人拼一把）。</p>
+<p>T1暴力25分，在链上分块（有点像《弹飞绵羊》）又20分，两种做法对拍。10:30写完，2010字节。出考场后感觉我是这题码量最小的，且似乎人均写出了正解。T2看到数据范围后高兴坏了，直接dfs。稍微卡了卡常数n=10就稳过。11:40写完。T3按题意模拟有30分，然后m=n-1时拿了15分。两种做法对拍（我只会造链和完全二叉树）。12:42写完。最后给T1分块造了几组极限数据，证明时间复杂度没假掉。</p>
+<p>预计45+60+45。</p>
+<p>考完后去盒马鲜生吃饭。14:20坐车返回。我又开始睡觉，当然这次舒服多了。偶尔睁开眼，看旁边的WZF玩植物大战僵尸。18:00才到学校，数兴已经开始30分钟，索性不去了。晚饭在机房解决。</p>
+<p>补作业啦！</p>
+<h1 id="平凡的世界——记2021寒假集训"><a href="#平凡的世界——记2021寒假集训" class="headerlink" title="平凡的世界——记2021寒假集训"></a>平凡的世界——记2021寒假集训</h1><p>2021/2/1~2021/2/6</p>
+<p>by ZQ&amp;&amp;ZY</p>
+<p>从偏僻的乡下（家里），庄稼人（学生）们赶集似的来到蛟川书院，琳琅满目的事物（知识）让他们感觉多新鲜！就像每天进门刷卡，那刷卡机竟然会说：放假进校！许多人都在心里暗暗地感到佩服：不愧是大地方，连刷卡机都不一样！</p>
+<p>已经是新年时候，只有少数几个勤劳的农民来这里劳动了。然而这都是些未成熟起来的青年，辛勤劳动一个半小时便觉得累，就在20分钟里上田间地头去转一转。青年人啊，你们朝气蓬勃，总有出去转一转的兴致。如果没有你们，这世界该多么单调，那满眼的风景又有谁来欣赏呢？那大路上的几只胖鸟，ZQ在松树下捡起的鸽子毛，人们玩的羽毛球、三毛球，还有那总是热门的“石头剪刀布”，叫人多么向往！</p>
+<p>城里人都有文化，农人们熟悉得有4个，他们衣衫整齐，满腹墨水，摆弄些数字符号，叫人们都啧啧赞叹，感到崇拜，甚至模仿起他们的口头禅来：“干什么？”“好吧bā！”“形态的结构……”，有时候还议论说：你看，“抽屈原理”是什么高深的东西？然而城里人更会享受，走廊上放着一把椅子，坐在上面晒太阳。农人们都纳闷了：太阳光这玩意还要特意晒？</p>
+<p>农人们有农人们的娱乐方式。中午城里人不在，农人们就唠嗑、学着城里人的样子写东西，赶时髦的，拍拍篮球，或者在纸上作一些稀奇古怪的游戏。当然有爱玩的是所有这些都玩一遍的！还有那不正经的LHN，抓一把草塞到ZQ帽子里，有时是趁着他们摔跤的时候。ZQ喜欢树，于是他有时爬松树。</p>
+<p>然而即使是淳朴的庄稼人之间也有勾心斗角，比如爱研究“物理”的ZYYu突然来了隔壁偷了一份写满符号的纸走了。农人们都好心，不计较这蝇头小利了。那“物理”的房间门口贴着“新冠患者隔离室”，叫人们都担心这里面在干些什么。</p>
+<p>ZY是农人中的神仙（假），他在最后一天的检测中花了一个钟头在前12题，可毒瘤的城里人把一个一般人看不懂的东西放在最后，尽管ZY看懂了，花了一个钟头，还是没有成功。他说：真正的强大并不在于整天刁难别人！没错，只有内心不强大的人，才会费尽心思把一些古怪的东西拿来摆在别人面前，来体现自己的“强大”，这只是内心的虚无。</p>
+<p>这几天像一部戏一样过去了，城里人说：下课10分钟。有人把它改成：下课100分钟。但我们都知道，分离再短，几天内也不会相见了。但我们的心在一起，分离再久，终会在这里相会。这是未来的必然性吗？</p>
+<h1 id="CSP-S2020游记"><a href="#CSP-S2020游记" class="headerlink" title="CSP-S2020游记"></a>CSP-S2020游记</h1><h2 id="初赛-1"><a href="#初赛-1" class="headerlink" title="初赛"></a>初赛</h2><p>2020/10/11</p>
+<p>睡了个懒觉，7:20才起床，8:00出门，在校门口等了一会儿就进去了。老师还在贴桌子上的考生信息。于是在走廊上聊天，还意外地遇到了小学同学SBN。符老师竟然跑到这里当巡考员。考试全程戴口罩。昨天刚做去年的卷子，感觉难度差不多，同样是阅读程序、完善程序最后一大题不会做。完善程序最后一大题和去年一样又是二进制操作。考试时间刚好够，没时间检查，不过时间再多可能也做不出。吃完中饭马上对答案，洛谷上已经有了一堆帖子，大概能考81.5分。（结果不多不少）</p>
+<h2 id="复赛-1"><a href="#复赛-1" class="headerlink" title="复赛"></a>复赛</h2><p>2020/11/7</p>
+<p>本来学校要上课，只好请假了……8:25出门，11:45到达考点附近，只找到一家开着的餐馆，ZZY、ZQ、ZYY、WZF、LKS 都在这里吃。菜做得很慢，12:50才吃完。然后走到校门口聊天，看到一些高中神仙拍合照，等郁老师来了就进了学校。好像还在开运动会 （到晚上也没有结束）。我的考生信息盖在上午考试的ZXB的上面，用手一掀就能看到。</p>
+<p>T1先写了个逐天模拟的算法，然后分段优化，调bug调了好久。结果有100多天忘记讨论了。（出了考场才想起来）由于是分段，所以大小样例都没出错。最后n=1e5的大数据还是跑了1.7s，我觉得是因为选手电脑性能不好（才4e7的运算量），就不管了。</p>
+<p>T2比T1简单，要用ull。不知道如何用scanf/printf处理ull，所以打了快读快输（出考场才想起来快输有bug不能输出0，希望答案没有0）。看题解发现有爆ull的特殊情况，又失分。</p>
+<p>T3直接模拟大概没分，用分块把单次修改的时间复杂度降为O(sqrt(n))，就有20分了。处理无加法操作的情况，又能拿到10分。结果有个数组忘记开long long，实际只剩5分；开long long后在洛谷上竟得到了70分！不开long long见祖宗啊！！</p>
+<p>T4没多想，时间也快没了，一个if就能解决n=3的20分。</p>
+<p>预计得分80+95+30+20=225，实际得分80+95+5+20=200。带进考场的食物一点也没吃，只喝了几口水。到家已经9:30了。</p>
+<h1 id="2020暑假日记"><a href="#2020暑假日记" class="headerlink" title="2020暑假日记"></a>2020暑假日记</h1><h2 id="信息学日记"><a href="#信息学日记" class="headerlink" title="信息学日记"></a>信息学日记</h2><p>2020/8/1</p>
+<ul>
+<li>第一次进神圣的提高机房！从声音可以听出，提高组敲键盘快、准，特别是狠</li>
+<li>ZYY键盘敲得像打雷一样</li>
+<li>ZQ在食堂免费得到一根香蕉，一瓶酸奶，是工作人员主动给的</li>
+<li>LTZ的代码连续“使用”了校内OJ超过20min</li>
+<li>提高组巨佬FSQ坐在ZY旁边，ZQ说他像郁老师，他打键盘也很有气势</li>
+<li>在电脑里翻出的不属于自己的HTML：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Dblark is very D!</span><br><span class="line">Do you know her?</span><br><span class="line">If you know her</span><br><span class="line">Then going to DIE!!!!</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>2020/8/2</p>
+<ul>
+<li>上午比赛，电脑动不动就蓝屏、重启</li>
+<li>WZF讲题，二话不说，走上讲台板书5分钟然后下去，全程教室静得只有鼠标的声音</li>
+<li>QY讲Tire，会的人（罗大等）坐前面，不会的人坐后面</li>
+<li>QY：LuYC回答一下，ZHX天真又果断地抢答了</li>
+<li>QY：好，我们来看一看这道普及组的题</li>
+<li>QY：我们有一个非常非常简单的做法，建一棵后缀树</li>
+<li>ZQ：罗大的大腿比我腰都粗</li>
+<li>ZQ的英文名：Goodenough</li>
+</ul>
+<p>2020/8/3</p>
+<ul>
+<li>MJW“三步上楼”，即爬综合楼的半层楼梯</li>
+<li>QY：听不懂是非常正常的，你要都听懂了，再练习就能参加浙江省选了！</li>
+<li>ZQ写在纸上：“ZY：一定要记下来（心理描写）”</li>
+<li>QY所说的入门题在luogu是紫题，为了反驳这一点QY改网页代码把紫的“省选/NOI-”改成红的“入门“</li>
+</ul>
+<p>2020/8/4</p>
+<ul>
+<li>上午考试，电脑三次重启：1.文字编辑软件（如DevC++，记事本，Notepad++）都在打开后不久停止工作；2.文件资源管理器无法打开；3.电脑蓝屏</li>
+<li>下午XYM（xpp）讲课</li>
+<li>QY：今天我们讲台风——</li>
+<li>XYM：QY判断它会到新疆去</li>
+<li>晚上，桌面和任务栏周期性闪烁，有点像显示器接触不良，ZY终于换了一台电脑</li>
+</ul>
+<p>2020/8/5</p>
+<ul>
+<li>HJR和GYZ玩generals，4倍速，GYZ几乎全输</li>
+<li>dblark：我D别人就D别人“You are so cai”，他似乎不会装弱</li>
+<li>题目未订正完，走出机房，是晚上9:20，印象中ZQ第一次说谎</li>
+<li>明天你是否会想起，昨天未调完的题……</li>
+</ul>
+<p>2020/8/6</p>
+<ul>
+<li>LTZ、HJR、GYZ玩generals</li>
+<li>dblark：省选我去我也能拿A，我也能参加NOI，太轻松了</li>
+<li>QY:$E</li>
+<li>罗大的晚饭：一份（两根）鸡翅，两份糖醋里脊</li>
+<li>ZQ、ZZY玩ZY的generals，被董老师发现了，ZQ、ZZY、GYZ和符老师谈话</li>
+</ul>
+<p>2020/8/7</p>
+<ul>
+<li>工会里有台球桌和乒乓球桌，饭后老师和学生都在里面玩</li>
+<li>上课开场白：本节课基础知识是导数，不会的同学可以从后门出去。开门请当心，注意脚下安全</li>
+<li>讲课时，某位巨佬：放我们还阳半刻（他其实听懂了——和大多数人不同）</li>
+</ul>
+<h2 id="数学日记"><a href="#数学日记" class="headerlink" title="数学日记"></a>数学日记</h2><p>2020/8/8</p>
+<ul>
+<li>A班教室竟少了一列座位，晚到的ZY只好坐在讲台侧边，之后坐到了最后一排</li>
+<li>老师说“变化”，有个人用很尖的声音小声地重复了一遍，像回声一样</li>
+<li>MJW打表找规律，被老师称为“计算机思维”</li>
+<li>MJW“两步下楼”，即下综合楼的半层楼梯</li>
+<li>ZQ、YH、CZH等人在教堂边打篮球</li>
+</ul>
+<p>2020/8/9</p>
+<ul>
+<li>ZQ从B班转入A班（啦），他一下就坐到了昨天唯一一个空座位上，仿佛这个座位是为他准备的</li>
+<li>换了老师，听到戴老师用洪亮的声音在隔壁讲昨天上过的内容</li>
+<li>GYZ玩桌面背景（蓝屏），MJW玩几何画板</li>
+</ul>
+<p>2020/8/10</p>
+<ul>
+<li>ZQ暂时从A班换到另一个B班</li>
+<li>下午数学刚下课，又被叫到机房</li>
+</ul>
+<p>2020/8/11</p>
+<ul>
+<li>CZH吃棒棒糖</li>
+<li>ZQ、ZY、MJW中饭后在工会打乒乓球</li>
+<li>SYG把学生卡从1楼扔到2楼</li>
+<li>SRZ用台球杆打乒乓球，QY用台球杆打足球</li>
+<li>dblark玩“软色情”游戏</li>
+</ul>
+<p>2020/8/12 A班考试</p>
+<ul>
+<li>ZQ把同桌的冰红茶当成尿液大加分析</li>
+<li>ZY、ZQ去6班教室抢救奄奄一息的植物，并清理尸体</li>
+<li>中午去了机房，ZQ打代码，ZY、MJW看数学视频</li>
+<li>小朋友充满敬仰地说：dblark AK IOI！周围的巨佬笑了起来，dblark：现在大家怎么都知道了啊——太好了！</li>
+<li>ZQ、ZY、ZZY在打台球的神仙们旁边战战兢兢地打乒乓球</li>
+<li>虞大径直地将白球打入洞中，众人惊呼：理论物理学大师！</li>
+<li>FSQ光着上身，湿溜溜的，进了机房，ZQ：身材真不错</li>
+</ul>
+<p>2020/8/13</p>
+<ul>
+<li>ZQ在教室吃鸡蛋</li>
+<li>ZH为了证明老师的答案是错的，拖了5(×57)分钟，最终发现自己错了</li>
+<li>信息应老师：我们这节课以科普为主，SRZ、QY等人想旁听却被赶走了</li>
+<li>愿好奇心长存！MJW的“百度搜索队列”：铬-&gt;钠-&gt;莫氏硬度-&gt;鲁伯特之泪……</li>
+</ul>
+<h2 id="科学日记"><a href="#科学日记" class="headerlink" title="科学日记"></a>科学日记</h2><p>2020/8/14</p>
+<ul>
+<li>施老师“突然闯入”，于是20分钟下课，去印刷厂搬成长记录本，去门卫搬校徽</li>
+<li>MJW去了机房，经ZQ“邀请”才回到科兴A班</li>
+<li>ZQ把量子（quantum）读作“权tum”</li>
+<li>LuYC：我们考虑上课（“我们考虑……”本是相当学术的用法）</li>
+<li>ZY在ZQ的一个C++文件上狂按回车，出现了壮观的bug：任务栏在上方下方同时出现，鼠标一会儿能动一会儿卡住，残缺的窗口可以拖动并留下尾迹，锁屏界面也有窗口弹出</li>
+<li>ZY搜索HMX的照片（ZQ在旁观看并兴致勃勃地指点），被符老师看见，感觉血液凝集了</li>
+</ul>
+<p>2020/8/15</p>
+<ul>
+<li>科学虞老师：我们每个同学每天基本上都会犯神经病</li>
+<li>MJW、ZZY等用学科的名字替换黑板上的化学方程式</li>
+<li>ZQ玩电脑上的“数字华容道”，一群人围着支招</li>
+</ul>
+<p>2020/8/16 A班考试</p>
+<ul>
+<li>ZQ用电脑搜索并播放科兴作业上的虞老师不会读的“菹”（音同“巨”）</li>
+<li>科学虞老师：蛆“出淤泥而不染”，踩破有爆鸣声（想到氢气验纯了么）</li>
+<li>信息郁老师：我们校长都可能被ZSJ（dblark） D爆</li>
+<li>信息郁老师：今天新初一要不要去普及组虐场啊</li>
+<li>ZQ单手在键盘盲打“//zyakioi”，用时10s</li>
+</ul>
+<p>2020/8/17</p>
+<ul>
+<li>ZQ手一滑把老师FTP上的课件删了</li>
+<li>用课程名字首尾相接组成一句话，脑洞大开：“外教会教语文”</li>
+<li>MJW反射阳光进教室，被全班抵制不让进门</li>
+<li>ZY吃蒟蒻果冻，是YH和CSH给HCH给ZQ的，ZQ保留了包装</li>
+<li>MJW“对巨佬过敏”，也就是体内有能杀灭巨佬的物质</li>
+<li>ZQ认为下课了，于是提前一节课背书包进教室</li>
+<li>下课擦黑板，唯独不擦两个“bb”（表示隐性基因，仅此而已）</li>
+<li>dblark为了防止小朋友吵他，用凳子堵住过道</li>
+<li>ZQ在调试代码中写“gyzakioi”，于是ZQ被GYZ喷口水、咬肩膀</li>
+<li>在体育馆，打羽毛球的：四个信息组老师（郁老师和董老师光着上身），打乒乓球的：CEZ和ZCR，JXT和不知名新初一，打篮球的：ZZY、ZQ、ZY、SKC、YWT、CEZ、ZCR</li>
+<li>为制止新初一闹事，信息郁老师钦定提高组的“纪委”</li>
+</ul>
+<p>2020/8/18 A班考试</p>
+<ul>
+<li>MJW在科兴下课玩小恐龙、几何画板</li>
+<li>ZY进机房时ZHX热情地迎上来大喊：positive1巨佬是我永远的信仰，膜膜膜！拜拜拜！于是和ZY一同的ZZY和ZQ欢乐地复读起来</li>
+<li>ZY、ZQ、ZZY、MJW、SKC、YWT、ZCR、CEZ一起打篮球、踢足球约1.5小时，水资源十分匮乏，但是很爽</li>
+<li>MJW叉开双腿越过体育馆门前的一个木质障碍，同时喊“我裂开了”</li>
+</ul>
+<p>2020/8/19</p>
+<ul>
+<li>ZQ在4班教室黑板上画ZY的头像，ZY用图钉摆出了“ZQ巨”</li>
+<li>ZYY在草稿纸上即兴发挥二分图匹配</li>
+<li>ZQ、ZY、MJW、ZZY在桌面上弹硬币玩</li>
+<li>傍晚继续打篮球，ZQ左手大拇指受伤</li>
+<li>晚上ZY和ZYY去普及组机房考试（虐场？）</li>
+</ul>
+<p>2020/8/20</p>
+<ul>
+<li>MJW未去英兴A班，也没有人请他</li>
+<li>提高组帮没做安全教育平台的人补做</li>
+<li>信息郁老师给ZY一罐可乐，因为昨天比赛AK</li>
+<li>QJH用草稿纸打杯子，信息郁老师对他说：欺负一个杯子算什么本事，有本事来欺负郁老师啊</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OI/" rel="tag"># OI</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/positive1%E7%9A%84%E6%9D%82%E7%89%A9%E9%9B%86/" rel="prev" title="positive1的杂物集">
+                  <i class="fa fa-chevron-left"></i> positive1的杂物集
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/randmd5/" rel="next" title="randmd5">
+                  randmd5 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">positive1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;all&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

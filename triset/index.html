@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;positivefirst.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="三进制的bitset">
+<meta property="og:type" content="article">
+<meta property="og:title" content="triset">
+<meta property="og:url" content="http://positivefirst.github.io/triset/index.html">
+<meta property="og:site_name" content="静心立志 进取豁达">
+<meta property="og:description" content="三进制的bitset">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-03T04:23:00.000Z">
+<meta property="article:modified_time" content="2021-12-20T08:43:23.379Z">
+<meta property="article:author" content="positive1">
+<meta property="article:tag" content="代码">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://positivefirst.github.io/triset/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;positivefirst.github.io&#x2F;triset&#x2F;&quot;,&quot;path&quot;:&quot;triset&#x2F;&quot;,&quot;title&quot;:&quot;triset&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>triset | 静心立志 进取豁达</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">静心立志 进取豁达</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-收藏夹"><a href="/collections/" rel="section"><i class="fa fa-star fa-fw"></i>收藏夹</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-班级日记"><a href="/tags/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B0/" rel="section"><i class="fa fa-book fa-fw"></i>班级日记</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E"><span class="nav-text">使用说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-text">构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE"><span class="nav-text">操作数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E5%B0%8F%E6%AF%94%E8%BE%83"><span class="nav-text">大小比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%93%88%E5%B8%8C"><span class="nav-text">哈希</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E5%AE%83"><span class="nav-text">其它</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-text">代码</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">positive1</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/triset/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="positive1">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="静心立志 进取豁达">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          triset
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-03 12:23:00" itemprop="dateCreated datePublished" datetime="2021-07-03T12:23:00+08:00">2021-07-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>三进制的bitset</p>
+<span id="more"></span>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>$5$个三进制位可以压进$1$个字节。（$3^5=243,2^8=256$）</p>
+<p>实际使用时会补齐成$8$个字节，即$40$个三进制位。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEN ((sz-1)/40+1)<span class="comment">//sz是三进制位数</span></span></span><br><span class="line"><span class="class"><span class="keyword">union</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> l[LEN];</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> s[LEN&lt;&lt;<span class="number">3</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>$1$次<code>unsigned long long</code>比较可以代替$8$次<code>unsigned char</code>比较，减小常数。</p>
+<p>通过自定义比较运算和哈希运算，<code>triset</code>可以直接套进<code>map,set,unordered_map,unordered_set</code>等STL。不过这个头文件也可以在没有开C++11及以上时通过编译。</p>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">triset</span>();</span><br><span class="line"><span class="built_in">triset</span>(string s);</span><br></pre></td></tr></table></figure>
+
+<p>为符合阅读顺序，这里认为<code>s[0]</code>是三进制最高位，<code>s[s.size()-1]</code>是最低位。如果<code>s</code>的长度超过<code>triset</code>的长度，则只保留较低位。除了字符<code>&#39;1&#39;</code>和<code>&#39;2&#39;</code>外，其他字符均看做<code>&#39;0&#39;</code>。</p>
+<p>和<code>bitset</code>类似，声明时要在尖括号里写长度。下标从$0$开始。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">bitset&lt;100&gt;b;</span><br><span class="line">triset&lt;<span class="number">100</span>&gt;t;</span><br><span class="line">bitset&lt;0&gt;nothing_b;<span class="comment">//可以通过编译</span></span><br><span class="line">triset&lt;<span class="number">0</span>&gt;<span class="keyword">nothing_t</span>;<span class="comment">//不能通过编译</span></span><br><span class="line">triset&lt;<span class="number">10</span>&gt;<span class="built_in">t10</span>(<span class="string">&quot;11112222abcd&quot;</span>);<span class="comment">//等价于&quot;1122220000&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="操作数据"><a href="#操作数据" class="headerlink" title="操作数据"></a>操作数据</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span>;<span class="comment">//清零</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">size_t</span> i,<span class="keyword">unsigned</span> val)</span></span>;<span class="comment">//把第i位修改成val，如果i越界或val&gt;2，则什么都不做</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">size_t</span> i)</span></span>;<span class="comment">//返回第i位的值，如果i越界，返回-1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="大小比较"><a href="#大小比较" class="headerlink" title="大小比较"></a>大小比较</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> triset&lt;sz&gt;&amp;rhs) <span class="keyword">const</span>;</span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> triset&lt;sz&gt;&amp;rhs) <span class="keyword">const</span>;</span><br><span class="line"><span class="keyword">bool</span> <span class="keyword">operator</span>&gt;(<span class="keyword">const</span> triset&lt;sz&gt;&amp;rhs) <span class="keyword">const</span>;</span><br></pre></td></tr></table></figure>
+
+<p>主要是为兼容STL，因此别的比较运算都没定义。</p>
+<h3 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> std</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">hash</span>&lt;</span>triset&lt;sz&gt; &gt;</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">typedef</span> <span class="keyword">size_t</span> result_type;</span><br><span class="line">		<span class="keyword">typedef</span> triset&lt;sz&gt; argument_type;</span><br><span class="line">		<span class="function"><span class="keyword">size_t</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> triset&lt;sz&gt;&amp;t)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> _Hash_impl::<span class="built_in">hash</span>(t.s,LEN&lt;&lt;<span class="number">3</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>供<code>unordered_set/map</code>使用。C++11之前没有这个功能。</p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">size_t</span> <span class="title">size</span><span class="params">()</span></span>;<span class="comment">//返回长度</span></span><br><span class="line"><span class="function">string <span class="title">to_string</span><span class="params">()</span></span>;<span class="comment">//转化为string，有前导零</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&quot;triset.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	triset&lt;<span class="number">10</span>&gt;<span class="built_in">t</span>(<span class="string">&quot;120&quot;</span>);</span><br><span class="line">	t.<span class="built_in">set</span>(<span class="number">9</span>,<span class="number">1</span>);</span><br><span class="line">	cout&lt;&lt;t.<span class="built_in">to_string</span>()&lt;&lt;endl;</span><br><span class="line">	t.<span class="built_in">reset</span>();</span><br><span class="line">	t.<span class="built_in">set</span>(<span class="number">8</span>,<span class="number">2</span>);</span><br><span class="line">	cout&lt;&lt;t.<span class="built_in">get</span>(<span class="number">8</span>)&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;t.<span class="built_in">get</span>(<span class="number">9</span>)&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;t.<span class="built_in">get</span>(<span class="number">10</span>)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1000000120</span><br><span class="line">2</span><br><span class="line">0</span><br><span class="line">-1</span><br></pre></td></tr></table></figure>
+
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//triset.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> TRISET_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRISET_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span><span class="comment">//size_t,memset</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> LEN ((sz-1)/40+1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> ((defined(__clang__)||defined(__GNUC__))&amp;&amp;__cplusplus&gt;=201103L)\</span></span><br><span class="line"><span class="meta">||(defined(_MSC_VER)&amp;&amp;_MSVC_LANG&gt;=201103L)<span class="comment">//C++11</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/functional_hash.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> CPP_11</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="keyword">namespace</span> _triset</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">unsigned</span> p[]=&#123;<span class="number">1</span>,<span class="number">3</span>,<span class="number">9</span>,<span class="number">27</span>,<span class="number">81</span>,<span class="number">243</span>&#125;;</span><br><span class="line">	<span class="keyword">using</span> std::string;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">triset</span></span></span><br><span class="line"><span class="class">	&#123;</span></span><br><span class="line">		<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">public</span>:</span><br><span class="line">		<span class="class"><span class="keyword">union</span></span></span><br><span class="line"><span class="class">		&#123;</span></span><br><span class="line">			<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> l[LEN];</span><br><span class="line">			<span class="keyword">unsigned</span> <span class="keyword">char</span> s[LEN&lt;&lt;<span class="number">3</span>];</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="built_in">triset</span>();</span><br><span class="line">		<span class="built_in">triset</span>(string s);</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">size_t</span> i,<span class="keyword">unsigned</span> val)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">size_t</span> i)</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">size_t</span> <span class="title">size</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="function">string <span class="title">to_string</span><span class="params">()</span></span>;</span><br><span class="line">		<span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> triset&lt;sz&gt;&amp;rhs) <span class="keyword">const</span>;</span><br><span class="line">		<span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> triset&lt;sz&gt;&amp;rhs) <span class="keyword">const</span>;</span><br><span class="line">		<span class="keyword">bool</span> <span class="keyword">operator</span>&gt;(<span class="keyword">const</span> triset&lt;sz&gt;&amp;rhs) <span class="keyword">const</span>;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">template</span>&lt;&gt;</span><br><span class="line">	<span class="class"><span class="keyword">class</span> <span class="title">triset</span>&lt;</span><span class="number">0</span>&gt;</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">private</span>:</span><br><span class="line">		<span class="built_in">triset</span>();</span><br><span class="line">	&#125;;<span class="comment">//Don&#x27;t use it</span></span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	triset&lt;sz&gt;::<span class="built_in">triset</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">memset</span>(l,<span class="number">0</span>,<span class="keyword">sizeof</span> l);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	<span class="keyword">void</span> triset&lt;sz&gt;::<span class="built_in">reset</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">memset</span>(l,<span class="number">0</span>,<span class="keyword">sizeof</span> l);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	<span class="keyword">void</span> triset&lt;sz&gt;::<span class="built_in">set</span>(<span class="keyword">size_t</span> i,<span class="keyword">unsigned</span> val)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(i&gt;=sz||val&gt;<span class="number">2</span>) <span class="keyword">return</span>;</span><br><span class="line">		<span class="keyword">size_t</span> a=i/<span class="number">5</span>,r=i%<span class="number">5</span>;</span><br><span class="line">		s[a]=(s[a]/p[r+<span class="number">1</span>]*<span class="number">3</span>+val)*p[r]+s[a]%p[r];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	triset&lt;sz&gt;::<span class="built_in">triset</span>(string s)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">memset</span>(l,<span class="number">0</span>,<span class="keyword">sizeof</span> l);</span><br><span class="line">		<span class="keyword">size_t</span> len=s.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">size_t</span> i=<span class="number">0</span>;i&lt;sz&amp;&amp;i&lt;len;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(s[len-i<span class="number">-1</span>]==<span class="string">&#x27;1&#x27;</span>) <span class="built_in">set</span>(i,<span class="number">1</span>);</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(s[len-i<span class="number">-1</span>]==<span class="string">&#x27;2&#x27;</span>) <span class="built_in">set</span>(i,<span class="number">2</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	<span class="keyword">int</span> triset&lt;sz&gt;::<span class="built_in">get</span>(<span class="keyword">size_t</span> i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(i&gt;=sz) <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">return</span> s[i/<span class="number">5</span>]/p[i%<span class="number">5</span>]%<span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	<span class="keyword">size_t</span> triset&lt;sz&gt;::<span class="built_in">size</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> sz;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	string triset&lt;sz&gt;::<span class="built_in">to_string</span>()</span><br><span class="line">	&#123;</span><br><span class="line">		string ret;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">size_t</span> i=sz<span class="number">-1</span>;;i--)</span><br><span class="line">		&#123;</span><br><span class="line">			ret+=<span class="built_in"><span class="keyword">char</span></span>(<span class="built_in">get</span>(i)+<span class="string">&#x27;0&#x27;</span>);</span><br><span class="line">			<span class="keyword">if</span>(i==<span class="number">0</span>) <span class="keyword">return</span> ret;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	<span class="keyword">bool</span> triset&lt;sz&gt;::<span class="keyword">operator</span>==(<span class="keyword">const</span> triset&lt;sz&gt;&amp;rhs) <span class="keyword">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">size_t</span> i=<span class="number">0</span>;i&lt;LEN;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(l[i]!=rhs.l[i]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	<span class="keyword">bool</span> triset&lt;sz&gt;::<span class="keyword">operator</span>&lt;(<span class="keyword">const</span> triset&lt;sz&gt;&amp;rhs) <span class="keyword">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">size_t</span> i=LEN<span class="number">-1</span>;;i--)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(l[i]&lt;rhs.l[i]) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span>(l[i]&gt;rhs.l[i]||i==<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	<span class="keyword">bool</span> triset&lt;sz&gt;::<span class="keyword">operator</span>&gt;(<span class="keyword">const</span> triset&lt;sz&gt;&amp;rhs) <span class="keyword">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span> rhs&lt;*<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">using</span> _triset::triset;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> defined(CPP_11)</span></span><br><span class="line"><span class="keyword">namespace</span> std</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">template</span>&lt;<span class="keyword">size_t</span> sz&gt;</span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">hash</span>&lt;</span>triset&lt;sz&gt; &gt;</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">typedef</span> <span class="keyword">size_t</span> result_type;</span><br><span class="line">		<span class="keyword">typedef</span> triset&lt;sz&gt; argument_type;</span><br><span class="line">		<span class="function"><span class="keyword">size_t</span> <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> triset&lt;sz&gt;&amp;t)</span> <span class="keyword">const</span> <span class="keyword">noexcept</span></span></span><br><span class="line"><span class="function">		</span>&#123;</span><br><span class="line">			<span class="keyword">return</span> _Hash_impl::<span class="built_in">hash</span>(t.s,LEN&lt;&lt;<span class="number">3</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> CPP_11</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">undef</span> LEN</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag"># 代码</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E7%9B%96%E6%A5%BC/" rel="prev" title="盖楼">
+                  <i class="fa fa-chevron-left"></i> 盖楼
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/%E9%BB%91%E7%99%BD%E6%A3%8B/" rel="next" title="黑白棋">
+                  黑白棋 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">positive1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;all&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
