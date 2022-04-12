@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;positivefirst.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:true,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="GCC builtin vector很像固定长度的valarray，它存放了若干个相同类型的变量，并支持对所有变量统一施加运算。在指令集的加持下，它的性能有巨大的提升，有时甚至可以“暴力碾标算”。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCC builtin vector 笔记">
+<meta property="og:url" content="http://positivefirst.github.io/GCC-builtin-vector-%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="用心做事 潜力无穷">
+<meta property="og:description" content="GCC builtin vector很像固定长度的valarray，它存放了若干个相同类型的变量，并支持对所有变量统一施加运算。在指令集的加持下，它的性能有巨大的提升，有时甚至可以“暴力碾标算”。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-04-05T07:54:12.000Z">
+<meta property="article:modified_time" content="2022-04-12T14:22:03.430Z">
+<meta property="article:author" content="positive1">
+<meta property="article:tag" content="卡常">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://positivefirst.github.io/GCC-builtin-vector-%E7%AC%94%E8%AE%B0/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;positivefirst.github.io&#x2F;GCC-builtin-vector-%E7%AC%94%E8%AE%B0&#x2F;&quot;,&quot;path&quot;:&quot;GCC-builtin-vector-笔记&#x2F;&quot;,&quot;title&quot;:&quot;GCC builtin vector 笔记&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>GCC builtin vector 笔记 | 用心做事 潜力无穷</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">用心做事 潜力无穷</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-收藏夹"><a href="/collections/" rel="section"><i class="fa fa-star fa-fw"></i>收藏夹</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-班级日记"><a href="/tags/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B0/" rel="section"><i class="fa fa-book fa-fw"></i>班级日记</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%BA%E9%97%B4%E5%8A%A0%E5%8C%BA%E9%97%B4%E6%B1%82%E5%92%8C"><span class="nav-text">区间加区间求和</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A7%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95"><span class="nav-text">大矩阵乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%9F%A9%E9%98%B5%E4%B9%98%E6%B3%95"><span class="nav-text">小矩阵乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bitset"><span class="nav-text">bitset</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">positive1</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/GCC-builtin-vector-%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="positive1">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="用心做事 潜力无穷">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GCC builtin vector 笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-05 15:54:12" itemprop="dateCreated datePublished" datetime="2022-04-05T15:54:12+08:00">2022-04-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><code>GCC builtin vector</code>很像固定长度的<code>valarray</code>，它存放了若干个相同类型的变量，并支持对所有变量统一施加运算。在指令集的加持下，它的性能有巨大的提升，有时甚至可以“暴力碾标算”。</p>
+<span id="more"></span>
+
+<p>下文的<code>vector</code>均指<code>GCC builtin vector</code>。</p>
+<p><a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/gcc/Vector-Extensions.html">这里</a>是<code>vector</code>的官方文档，介绍了它的使用方法。下面一行代码定义了<code>u256</code>类型，长度为32字节，存放8个<code>unsigned</code>类型。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> u256 __attribute((<span class="built_in">vector_size</span>(<span class="number">32</span>)));</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>vector</code>要在代码开头加<code>#pragma GCC target(&quot;avx,avx2&quot;)</code>，如果没有这句话，<code>vector</code>会跑得比<code>for</code>循环+普通数组还要慢。洛谷IDE有编译选项<code>-march=native</code>，这句话就可以不写。此外以下代码测试时都有编译选项<code>-O2 -std=c++11</code>。</p>
+<h2 id="区间加区间求和"><a href="#区间加区间求和" class="headerlink" title="区间加区间求和"></a>区间加区间求和</h2><p>类似<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3372">P3372 【模板】线段树 1</a>，$n=m=2\times 10^5$，答案对$2^{32}$取模。输入文件中等概率出现修改和查询，数值均随机。本地文件读写需要约0.2秒。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用时/ms</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>暴力</td>
+<td>5014</td>
+</tr>
+<tr>
+<td>循环展开</td>
+<td>3999</td>
+</tr>
+<tr>
+<td><code>vector</code></td>
+<td>1468</td>
+</tr>
+</tbody></table>
+<p>还有一种指令集的写法需要<code>#include&lt;immintrin.h&gt;</code>，各种操作形如<code>_mm256_xxxxxxxxxxx</code>，速度和<code>vector</code>差不多，但写起来不如<code>vector</code>方便。</p>
+<p>如果没有写<code>#pragma GCC target(&quot;avx,avx2&quot;)</code>，<code>vector</code>用时达到了丢人的17686ms。不过这句话对暴力和循环展开的速度几乎没有影响。在接下来的试验中，这句话对不使用<code>vector</code>的代码也几乎没有影响。</p>
+<p>循环展开的部分代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=l;i+<span class="number">7</span>&lt;=r;i+=<span class="number">8</span>)</span><br><span class="line">&#123;</span><br><span class="line">	a[i+<span class="number">0</span>]+=val;</span><br><span class="line">	a[i+<span class="number">1</span>]+=val;</span><br><span class="line">	a[i+<span class="number">2</span>]+=val;</span><br><span class="line">	a[i+<span class="number">3</span>]+=val;</span><br><span class="line">	a[i+<span class="number">4</span>]+=val;</span><br><span class="line">	a[i+<span class="number">5</span>]+=val;</span><br><span class="line">	a[i+<span class="number">6</span>]+=val;</span><br><span class="line">	a[i+<span class="number">7</span>]+=val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(;i&lt;=r;i++) a[i]+=val;</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>vector</code>的完整代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> GCC target(<span class="meta-string">&quot;avx,avx2&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> u256 __attribute((<span class="built_in">vector_size</span>(<span class="number">32</span>)));</span><br><span class="line">u256 a[<span class="number">26000</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;in.txt&quot;</span>,<span class="string">&quot;r&quot;</span>,stdin);</span><br><span class="line">	<span class="built_in">freopen</span>(<span class="string">&quot;out1.txt&quot;</span>,<span class="string">&quot;w&quot;</span>,stdout);</span><br><span class="line">	<span class="keyword">int</span> i,n,m,op,l,r;</span><br><span class="line">	<span class="keyword">unsigned</span> val;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++) <span class="built_in">scanf</span>(<span class="string">&quot;%u&quot;</span>,&amp;a[i/<span class="number">8</span>][i%<span class="number">8</span>]);</span><br><span class="line">	<span class="keyword">clock_t</span> start=<span class="built_in">clock</span>();</span><br><span class="line">	<span class="keyword">while</span>(m--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;op,&amp;l,&amp;r);</span><br><span class="line">		l--,r--;</span><br><span class="line">		<span class="keyword">int</span> bl=l/<span class="number">8</span>,br=r/<span class="number">8</span>;</span><br><span class="line">		<span class="keyword">if</span>(op==<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">&quot;%u&quot;</span>,&amp;val);</span><br><span class="line">			<span class="keyword">if</span>(bl==br)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span>(i=l;i&lt;=r;i++) a[bl][i%<span class="number">8</span>]+=val;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				u256 v=&#123;val,val,val,val,val,val,val,val&#125;;</span><br><span class="line">				<span class="keyword">for</span>(i=bl+<span class="number">1</span>;i&lt;br;i++) a[i]+=v;</span><br><span class="line">				<span class="keyword">for</span>(i=l;i&lt;bl*<span class="number">8</span>+<span class="number">8</span>;i++) a[bl][i%<span class="number">8</span>]+=val;</span><br><span class="line">				<span class="keyword">for</span>(i=br*<span class="number">8</span>;i&lt;=r;i++) a[br][i%<span class="number">8</span>]+=val;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			val=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span>(bl==br)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">for</span>(i=l;i&lt;=r;i++) val+=a[bl][i%<span class="number">8</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				u256 v=&#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">				<span class="keyword">for</span>(i=bl+<span class="number">1</span>;i&lt;br;i++) v+=a[i];</span><br><span class="line">				<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++) val+=v[i];</span><br><span class="line">				<span class="keyword">for</span>(i=l;i&lt;bl*<span class="number">8</span>+<span class="number">8</span>;i++) val+=a[bl][i%<span class="number">8</span>];</span><br><span class="line">				<span class="keyword">for</span>(i=br*<span class="number">8</span>;i&lt;=r;i++) val+=a[br][i%<span class="number">8</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%u\n&quot;</span>,val);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cerr&lt;&lt;<span class="built_in">clock</span>()-start;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="大矩阵乘法"><a href="#大矩阵乘法" class="headerlink" title="大矩阵乘法"></a>大矩阵乘法</h2><p>使用$[0,2^{60}]$的随机数生成两个$1024$阶矩阵$a,b$，计算结果存在$c$中，对$2^{64}$取模。</p>
+<p>探究不同计算顺序和<code>vector_size</code>参数值（也就是一个<code>vector</code>占几个字节）对效率的影响。</p>
+<p><code>vector</code>优化基于以下使用<code>valarray</code>计算矩阵乘法的代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		c[i]+=a[i][j]*b[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>把很长的<code>valarray</code>拆成许多短的<code>vector</code>以实现优化。</p>
+<p>以下方法中<code>i</code>是最外层循环变量，<code>j</code>其次，<code>k</code>是最内层循环变量。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用时/ms</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>valarray</code></td>
+<td>687</td>
+</tr>
+<tr>
+<td><code>c[i][j]+=a[i][k]*b[k][j];</code></td>
+<td>7780</td>
+</tr>
+<tr>
+<td><code>c[j][k]+=a[j][i]*b[i][k];</code></td>
+<td>658</td>
+</tr>
+<tr>
+<td><code>c[i][k]+=a[i][j]*b[j][k];</code></td>
+<td>595</td>
+</tr>
+<tr>
+<td>对$b$转置，接着<code>c[i][j]+=a[i][k]*b[j][k];</code></td>
+<td>529</td>
+</tr>
+<tr>
+<td><code>vector_size(8)</code></td>
+<td>552</td>
+</tr>
+<tr>
+<td><code>vector_size(16)</code></td>
+<td>554</td>
+</tr>
+<tr>
+<td><code>vector_size(32)</code></td>
+<td>483</td>
+</tr>
+<tr>
+<td><code>vector_size(64)</code></td>
+<td>3855</td>
+</tr>
+<tr>
+<td><code>vector_size(128)</code></td>
+<td>runtime error</td>
+</tr>
+<tr>
+<td><code>vector_size(256)</code></td>
+<td>1549</td>
+</tr>
+</tbody></table>
+<p>第二行的7780ms是在数组大小为1024时测的，如果数组大小改为1025，用时降为2187ms。这大概证实了“不要开二的幂次大小的数组”的传说（<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/456810060">知乎问题</a>）。不过调整数组大小对其他方法的速度几乎没有影响。</p>
+<p>我也不知道为啥会出现runtime error。</p>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> GCC target(<span class="meta-string">&quot;avx,avx2&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> T;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> n=<span class="number">1024</span>,vs=<span class="number">8</span>,stp=vs/<span class="number">8</span>,len=n/stp;</span><br><span class="line"></span><br><span class="line">T a[n][n+<span class="number">1</span>],b[n][n+<span class="number">1</span>],c[n][n+<span class="number">1</span>];</span><br><span class="line"><span class="comment">//valarray&lt;T&gt;a[n],b[n],c[n];</span></span><br><span class="line"><span class="comment">//T __attribute__((vector_size(vs)))a[n][len],b[n][len],c[n][len];</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,k;</span><br><span class="line">	T sum=<span class="number">0</span>;</span><br><span class="line">	<span class="function">mt19937 <span class="title">e</span><span class="params">(<span class="number">23323</span>)</span></span>;</span><br><span class="line">	uniform_int_distribution&lt;T&gt;<span class="built_in">u</span>(<span class="number">0</span>,<span class="number">1LL</span>&lt;&lt;<span class="number">60</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line"><span class="comment">//		a[i].resize(n);</span></span><br><span class="line"><span class="comment">//		b[i].resize(n);</span></span><br><span class="line"><span class="comment">//		c[i].resize(n);</span></span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			a[i][j]=<span class="built_in">u</span>(e);</span><br><span class="line">			b[i][j]=<span class="built_in">u</span>(e);</span><br><span class="line"><span class="comment">//			a[i][j/stp][j%stp]=u(e);</span></span><br><span class="line"><span class="comment">//			b[i][j/stp][j%stp]=u(e);</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">clock_t</span> s=<span class="built_in">clock</span>();</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++) <span class="keyword">for</span>(j=i+<span class="number">1</span>;j&lt;n;j++) <span class="built_in">swap</span>(b[i][j],b[j][i]);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">		&#123;</span><br><span class="line"><span class="comment">//			c[i]+=a[i][j]*b[j];</span></span><br><span class="line"><span class="comment">//			for(k=0;k&lt;len;k++) c[i][k]+=a[i][j/stp][j%stp]*b[j][k];</span></span><br><span class="line">			<span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;n;k++)</span><br><span class="line">			&#123;</span><br><span class="line">				c[i][j]+=a[i][k]*b[j][k];</span><br><span class="line"><span class="comment">//				c[i][k]+=a[i][j]*b[j][k];</span></span><br><span class="line"><span class="comment">//				c[i][j]+=a[i][k]*b[k][j];</span></span><br><span class="line"><span class="comment">//				c[j][k]+=a[j][i]*b[i][k];</span></span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">clock</span>()-s&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			sum+=c[i][j];</span><br><span class="line"><span class="comment">//			sum+=c[i][j/stp][j%stp];</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="小矩阵乘法"><a href="#小矩阵乘法" class="headerlink" title="小矩阵乘法"></a>小矩阵乘法</h2><p>使用$[0,998244352]$的随机数生成$10^4$个$4$阶矩阵（$32$字节的<code>vector</code>恰好存下一个$4$维向量），计算约$5\times 10^7$次矩阵乘法，对$998244353$取模。</p>
+<p>计算顺序都类似大矩阵乘法中的<code>c[i][k]+=a[i][j]*b[j][k];</code>。</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>用时/ms</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>valarray</code></td>
+<td>31914</td>
+</tr>
+<tr>
+<td>暴力</td>
+<td>3503</td>
+</tr>
+<tr>
+<td>循环展开</td>
+<td>1977</td>
+</tr>
+<tr>
+<td><code>vector</code></td>
+<td>2485</td>
+</tr>
+</tbody></table>
+<p>代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> GCC target(<span class="meta-string">&quot;avx,avx2&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> vec __attribute__((<span class="built_in">vector_size</span>(<span class="number">32</span>)));</span><br><span class="line"><span class="comment">//typedef valarray&lt;long long&gt;vec;</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">struct vec</span></span><br><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment">	long long v[4];</span></span><br><span class="line"><span class="comment">	long long &amp;operator[](int x)&#123;return v[x];&#125;</span></span><br><span class="line"><span class="comment">&#125;;</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">long</span> <span class="keyword">long</span> mod=<span class="number">998244353</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">mat</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	vec m[<span class="number">4</span>];</span><br><span class="line">	<span class="comment">//mat()&#123;for(int i=0;i&lt;4;i++)m[i].resize(4);&#125;</span></span><br><span class="line">	vec &amp;<span class="keyword">operator</span>[](<span class="keyword">int</span> x)&#123;<span class="keyword">return</span> m[x];&#125;</span><br><span class="line">&#125;a[<span class="number">10000</span>];</span><br><span class="line"></span><br><span class="line">mat <span class="keyword">operator</span>*(mat a,mat b)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,k;</span><br><span class="line">	mat c;</span><br><span class="line">	<span class="built_in">memset</span>(c.m,<span class="number">0</span>,<span class="keyword">sizeof</span> c.m);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">4</span>;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			c[i]+=a[i][j]*b[j];</span><br><span class="line"><span class="comment">//			c[i][0]+=a[i][j]*b[j][0];</span></span><br><span class="line"><span class="comment">//			c[i][1]+=a[i][j]*b[j][1];</span></span><br><span class="line"><span class="comment">//			c[i][2]+=a[i][j]*b[j][2];</span></span><br><span class="line"><span class="comment">//			c[i][3]+=a[i][j]*b[j][3];</span></span><br><span class="line"><span class="comment">//			for(k=0;k&lt;4;k++) c[i][k]+=a[i][j]*b[j][k];</span></span><br><span class="line">		&#125;</span><br><span class="line">		c[i]%=mod;</span><br><span class="line"><span class="comment">//		c[i][0]%=mod;</span></span><br><span class="line"><span class="comment">//		c[i][1]%=mod;</span></span><br><span class="line"><span class="comment">//		c[i][2]%=mod;</span></span><br><span class="line"><span class="comment">//		c[i][3]%=mod;</span></span><br><span class="line"><span class="comment">//		for(j=0;j&lt;4;j++) c[i][j]%=mod;</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,n=<span class="number">10000</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> sum=<span class="number">0</span>;</span><br><span class="line">	mt19937 e;</span><br><span class="line">	uniform_int_distribution&lt;<span class="keyword">int</span>&gt;<span class="built_in">u</span>(<span class="number">0</span>,mod<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">16</span>;j++) a[i][j/<span class="number">4</span>][j%<span class="number">4</span>]=<span class="built_in">u</span>(e);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">time_t</span> start=<span class="built_in">clock</span>();</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		mat b=a[i];</span><br><span class="line">		<span class="keyword">for</span>(j=i;j&lt;n;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			b=b*a[i];</span><br><span class="line">		&#125;</span><br><span class="line">		sum=(sum+b[<span class="number">0</span>][<span class="number">0</span>])%mod;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">clock</span>()-start&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="bitset"><a href="#bitset" class="headerlink" title="bitset"></a>bitset</h2><p>$256$位一起操作的<code>bitset</code>，听起来就很诱人！妈妈再也不用担心$\frac{n^2}{w}$过不了$4\times10^5$了！</p>
+<p>编译器默认实现的赋值操作（<code>operator=</code>）、<code>memcpy</code>以及用<code>for</code>循环逐个<code>vector</code>赋值速度没啥区别。也许它们编译后就是一样的。</p>
+<p><code>bitset</code>支持很多操作，我只实现了没几个，所以不放代码。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%A1%E5%B8%B8/" rel="tag"># 卡常</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/Hash-Killer/" rel="prev" title="Hash Killer">
+                  <i class="fa fa-chevron-left"></i> Hash Killer
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">positive1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{&quot;enable&quot;:true,&quot;tags&quot;:&quot;all&quot;,&quot;js&quot;:{&quot;url&quot;:&quot;https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;npm&#x2F;mathjax@3.1.4&#x2F;es5&#x2F;tex-mml-chtml.js&quot;,&quot;integrity&quot;:&quot;sha256-ncNI9OXOS5Ek4tzVYiOMmN&#x2F;KKCPZ6V0Cpv2P&#x2F;zHntiA&#x3D;&quot;}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
