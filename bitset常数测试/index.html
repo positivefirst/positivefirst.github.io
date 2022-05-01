@@ -28,7 +28,7 @@
 <meta property="og:description" content="有一天，我在SOJ上卡常，发现下面两种统计now的区间$[l,r)$中$1$的个数的方法，运行时间有明显差异。 12(now&gt;&gt;l).count()-(now&gt;&gt;r).count();((now^(now&gt;&gt;r&lt;&lt;r))&gt;&gt;l).count();  为了今后更好地卡常，我在洛谷和SOJ上测试了bitset的几种操作，并记录所用时间。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-16T12:50:29.000Z">
-<meta property="article:modified_time" content="2022-04-13T08:19:52.932Z">
+<meta property="article:modified_time" content="2022-05-01T05:43:13.572Z">
 <meta property="article:author" content="positive1">
 <meta property="article:tag" content="卡常">
 <meta name="twitter:card" content="summary">
@@ -306,7 +306,8 @@
 <td>359</td>
 </tr>
 </tbody></table>
-<p>总体上左移、右移运算慢于其他按位运算；位移的幅度越大，运算越快。在SOJ上，<code>count()</code>非常慢，左移常量慢于右移常量（这合理吗？），不过左移变量和右移变量速度基本一样。</p>
+<p>总体上左移、右移运算慢于其他按位运算；位移的幅度越大，运算越快。</p>
+<p>在SOJ上，<code>count()</code>非常慢。但如果加入<code>#pragma GCC target(&quot;popcnt&quot;)</code>，706ms-&gt;359ms。左移常量慢于右移常量（这合理吗？），不过左移变量和右移变量速度基本一样。</p>
 
     </div>
 
