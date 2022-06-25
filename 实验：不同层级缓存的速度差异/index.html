@@ -22,14 +22,14 @@
 
 
 
-<link rel="canonical" href="http://positivefirst.github.io/%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8E%A2%E7%A7%98/">
+<link rel="canonical" href="http://positivefirst.github.io/%E5%AE%9E%E9%AA%8C%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B1%82%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8E%A2%E7%A7%98/","path":"位运算探秘/","title":"位运算探秘"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/%E5%AE%9E%E9%AA%8C%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B1%82%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/","path":"实验：不同层级缓存的速度差异/","title":"实验：不同层级缓存的速度差异"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>位运算探秘 | 用心做事 潜力无穷</title>
+<title>实验：不同层级缓存的速度差异 | 用心做事 潜力无穷</title>
   
 
 
@@ -177,7 +177,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/%E4%BD%8D%E8%BF%90%E7%AE%97%E6%8E%A2%E7%A7%98/">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/%E5%AE%9E%E9%AA%8C%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B1%82%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -190,12 +190,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="位运算探秘 | 用心做事 潜力无穷">
+      <meta itemprop="name" content="实验：不同层级缓存的速度差异 | 用心做事 潜力无穷">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          位运算探秘
+          实验：不同层级缓存的速度差异
         </h1>
 
         <div class="post-meta-container">
@@ -206,7 +206,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-07-31 09:55:20" itemprop="dateCreated datePublished" datetime="2021-07-31T09:55:20+08:00">2021-07-31</time>
+      <time title="创建时间：2022-06-25 12:32:04" itemprop="dateCreated datePublished" datetime="2022-06-25T12:32:04+08:00">2022-06-25</time>
     </span>
 
   
@@ -219,20 +219,64 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>$\LaTeX$渲染测试——与位运算有关的恒等式与不等式</p>
+        <p>随着技术的进步，代码越跑越快，许多$n,q\le10^5$的数据结构题都有被$O(nq)$暴力通过的风险。但树似乎对暴力非常不友好，甚至$n=q=40000$、6秒时限都可以卡掉暴力。</p>
+<p>要解释原因，建议阅读：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31422201">L1，L2，L3 Cache究竟在哪里？</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1973559">IC基础知识</a>（重点看问题【46】）</li>
+</ul>
+<p>当你访问内存中的某个地址时，这个地址的左右“邻居”也会进入缓存。缓存的容量比内存小得多，但是速度比内存快得多。你下次访问“邻居”，速度就比访问其他地址快。通常树的访问方式类似链表，会破坏内存访问连续性。</p>
 <span id="more"></span>
 
-<p>$\operatorname{xor},\operatorname{and},\operatorname{not}$分别是按位异或，按位与，按位取反。</p>
-<p>$a+b=(a\operatorname{xor}b)+2\times(a\operatorname{and}b)$</p>
-<p>$a+b\ge a\operatorname{xor}b$</p>
-<p>$a+b+c\ge a\operatorname{xor}b\operatorname{xor}c$</p>
-<p>$a+b+c=\dfrac{(a\operatorname{xor}b)+(b\operatorname{xor}c)+(c\operatorname{xor}a)}{2}+(a\operatorname{and}b)+(b\operatorname{and}c)+(c\operatorname{and}a)$</p>
-<p>$a+b+c\ge \dfrac{(a\operatorname{xor}b)+(b\operatorname{xor}c)+(c\operatorname{xor}a)}{2}$</p>
-<p>$(a\operatorname{xor}c)+(b\operatorname{xor}c)\ge a\operatorname{xor}b$</p>
-<p>$(a\operatorname{xor}d)+(b\operatorname{xor}d)+(c\operatorname{xor}d)\ge a\operatorname{xor}b\operatorname{xor}c\operatorname{xor}d$</p>
-<p>$a\operatorname{xor}b\ge a-b$</p>
-<p>$a\operatorname{and}(a\operatorname{xor}b)=a\operatorname{and}\operatorname{not}b$</p>
-<p>$a-b=2\times(a\operatorname{and}\operatorname{not}b)-(a\operatorname{xor}b)$</p>
+<p>机房的电脑L1缓存384KB，L2缓存1.5MB，L3缓存9MB，内存8GB。同样是容量越小的速度越快。</p>
+<p>我们的实验是生成不同长度的环形链表（用<code>int</code>数组存储），沿着链表走$10^9$步，记录用时。控制计算量不变，改变内存访问范围及顺序。链表生成方式有两种，一种是完全随机，另一种是小范围随机、整体上有序。</p>
+<table>
+<thead>
+<tr>
+<th>链表长度</th>
+<th>随机访问用时/ms</th>
+<th>顺序访问用时/ms</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>10</td>
+<td>1171</td>
+<td>1171</td>
+</tr>
+<tr>
+<td>100</td>
+<td>1176</td>
+<td>1171</td>
+</tr>
+<tr>
+<td>1e3</td>
+<td>1171</td>
+<td>1174</td>
+</tr>
+<tr>
+<td>1e4</td>
+<td>1490</td>
+<td>1187</td>
+</tr>
+<tr>
+<td>1e5（超过L1缓存）</td>
+<td>5823</td>
+<td>1187</td>
+</tr>
+<tr>
+<td>1e6（超过L2缓存）</td>
+<td>11120</td>
+<td>1187</td>
+</tr>
+<tr>
+<td>1e7（超过L3缓存）</td>
+<td>59924</td>
+<td>1188</td>
+</tr>
+</tbody></table>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> n=<span class="number">10000</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">mt19937 <span class="title">e</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> a[n+<span class="number">1</span>],b[n+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="keyword">unsigned</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++) b[i]=i;</span><br><span class="line">	<span class="built_in">shuffle</span>(b+<span class="number">1</span>,b+n+<span class="number">1</span>,e);</span><br><span class="line">	<span class="comment">//for(i=1;i&lt;n;i+=2) if(e()&amp;1) swap(b[i],b[i+1]);</span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++) a[b[i]]=b[i+<span class="number">1</span>];</span><br><span class="line">	a[b[n]]=b[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">clock_t</span> start=<span class="built_in">clock</span>();</span><br><span class="line">	<span class="keyword">for</span>(i=j=<span class="number">1</span>;i&lt;=<span class="number">1000000000</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		j=a[j];</span><br><span class="line">		sum+=j;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">clock</span>()-start&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看出相邻两层存储器速度相差数倍。相同计算量的情况下，仅仅访问的内存不同，就能产生五十几倍的时间差异。只有用好L1缓存，才能做到“暴力出奇迹”。虽然一般题目会给几百MB的空间限制，但是少而集中地使用内存，无形中能减小许多常数。</p>
 
     </div>
 
@@ -242,21 +286,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/OI/" rel="tag"># OI</a>
+              <a href="/tags/%E5%8D%A1%E5%B8%B8/" rel="tag"># 卡常</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/%E9%9F%B3%E4%B9%90%E7%94%9F%E6%88%90%E5%99%A8/" rel="prev" title="音乐生成器">
-                  <i class="fa fa-chevron-left"></i> 音乐生成器
+                <a href="/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B05/" rel="prev" title="班级日记5">
+                  <i class="fa fa-chevron-left"></i> 班级日记5
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/%E7%AA%97%E5%A4%96%E7%9A%84%E5%A4%A9%E7%A9%BA/" rel="next" title="窗外的天空">
-                  窗外的天空 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
