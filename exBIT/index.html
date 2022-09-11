@@ -22,14 +22,14 @@
 
 
 
-<link rel="canonical" href="http://positivefirst.github.io/%E5%AE%9E%E9%AA%8C%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B1%82%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/">
+<link rel="canonical" href="http://positivefirst.github.io/exBIT/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/%E5%AE%9E%E9%AA%8C%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B1%82%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/","path":"实验：不同层级缓存的速度差异/","title":"实验：不同层级缓存的速度差异"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/exBIT/","path":"exBIT/","title":"用可变参数模板实现任意维树状数组"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>实验：不同层级缓存的速度差异 | 用心做事 潜力无穷</title>
+<title>用可变参数模板实现任意维树状数组 | 用心做事 潜力无穷</title>
   
 
 
@@ -177,7 +177,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/%E5%AE%9E%E9%AA%8C%EF%BC%9A%E4%B8%8D%E5%90%8C%E5%B1%82%E7%BA%A7%E7%BC%93%E5%AD%98%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/exBIT/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -190,12 +190,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="实验：不同层级缓存的速度差异 | 用心做事 潜力无穷">
+      <meta itemprop="name" content="用可变参数模板实现任意维树状数组 | 用心做事 潜力无穷">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          实验：不同层级缓存的速度差异
+          用可变参数模板实现任意维树状数组
         </h1>
 
         <div class="post-meta-container">
@@ -206,7 +206,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-06-25 12:32:04" itemprop="dateCreated datePublished" datetime="2022-06-25T12:32:04+08:00">2022-06-25</time>
+      <time title="创建时间：2022-09-11 16:30:50" itemprop="dateCreated datePublished" datetime="2022-09-11T16:30:50+08:00">2022-09-11</time>
     </span>
 
   
@@ -219,64 +219,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>随着技术的进步，代码越跑越快，许多$n,q\le10^5$的数据结构题都有被$O(nq)$暴力通过的风险。但树似乎对暴力非常不友好，甚至$n=q=40000$、6秒时限都可以卡掉暴力。</p>
-<p>要解释原因，建议阅读：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31422201">L1，L2，L3 Cache究竟在哪里？</a></li>
-<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1973559">IC基础知识</a>（重点看问题【46】）</li>
-</ul>
-<p>当你访问内存中的某个地址时，这个地址的左右“邻居”也会进入缓存。缓存的容量比内存小得多，但是速度比内存快得多。你下次访问“邻居”，速度就比访问其他地址快。通常树的访问方式类似链表，会破坏内存访问连续性。</p>
+        <p><code>tuple</code> 是可变参数模板现成的例子，阅读源码可知其使用 <code>...</code> 语法实现了魔幻的操作。另一方面高维树状数组每一维都在干类似的事情，这为递归提供了便利。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">unsigned</span> ...ns&gt;<span class="class"><span class="keyword">struct</span> <span class="title">BIT</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BIT</span>&lt;</span>&gt;<span class="comment">//0维树状数组：单点加单点查询</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="built_in">BIT</span>():<span class="built_in">x</span>(<span class="number">0</span>)&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		x+=v;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">unsigned</span> n,<span class="keyword">unsigned</span> ...ns&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BIT</span>&lt;</span>n,ns...&gt;</span><br><span class="line">&#123;</span><br><span class="line">	BIT&lt;ns...&gt;x[n];</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class ...args&gt;</span></span><br><span class="line"><span class="function">	<span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> v,<span class="keyword">unsigned</span> i,args ...is)</span><span class="comment">//单点加v，下标出现0会死循环</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(;i&lt;n;i+=(i&amp;-i)) x[i].<span class="built_in">add</span>(v,is...);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class ...args&gt;</span></span><br><span class="line"><span class="function">	<span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">unsigned</span> i,args ...is)</span><span class="comment">//求前缀和</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(;i;i-=(i&amp;-i)) sum+=x[i].<span class="built_in">query</span>(is...);</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <span id="more"></span>
 
-<p>机房的电脑L1缓存384KB，L2缓存1.5MB，L3缓存9MB，内存8GB。同样是容量越小的速度越快。</p>
-<p>我们的实验是生成不同长度的环形链表（用<code>int</code>数组存储），沿着链表走$10^9$步，记录用时。控制计算量不变，改变内存访问范围及顺序。链表生成方式有两种，一种是完全随机，另一种是小范围随机、整体上有序。</p>
-<table>
-<thead>
-<tr>
-<th>链表长度</th>
-<th>随机访问用时/ms</th>
-<th>顺序访问用时/ms</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>10</td>
-<td>1171</td>
-<td>1171</td>
-</tr>
-<tr>
-<td>100</td>
-<td>1176</td>
-<td>1171</td>
-</tr>
-<tr>
-<td>1e3</td>
-<td>1171</td>
-<td>1174</td>
-</tr>
-<tr>
-<td>1e4</td>
-<td>1490</td>
-<td>1187</td>
-</tr>
-<tr>
-<td>1e5（超过L1缓存）</td>
-<td>5823</td>
-<td>1187</td>
-</tr>
-<tr>
-<td>1e6（超过L2缓存）</td>
-<td>11120</td>
-<td>1187</td>
-</tr>
-<tr>
-<td>1e7（超过L3缓存）</td>
-<td>59924</td>
-<td>1188</td>
-</tr>
-</tbody></table>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> n=<span class="number">10000</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">mt19937 <span class="title">e</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> a[n+<span class="number">1</span>],b[n+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="keyword">unsigned</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++) b[i]=i;</span><br><span class="line">	<span class="built_in">shuffle</span>(b+<span class="number">1</span>,b+n+<span class="number">1</span>,e);</span><br><span class="line">	<span class="comment">//for(i=1;i&lt;n;i+=2) if(e()&amp;1) swap(b[i],b[i+1]);</span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++) a[b[i]]=b[i+<span class="number">1</span>];</span><br><span class="line">	a[b[n]]=b[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">clock_t</span> start=<span class="built_in">clock</span>();</span><br><span class="line">	<span class="keyword">for</span>(i=j=<span class="number">1</span>;i&lt;=<span class="number">1000000000</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		j=a[j];</span><br><span class="line">		sum+=j;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">clock</span>()-start&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用示例：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">BIT&lt;<span class="number">2049</span>,<span class="number">2049</span>&gt;d,di,dj,dij;<span class="comment">//2049*2049的二维树状数组，和定义数组一样方便！</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vAdd</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	d.<span class="built_in">add</span>(val,x,y);</span><br><span class="line">	di.<span class="built_in">add</span>(val*x,x,y);</span><br><span class="line">	dj.<span class="built_in">add</span>(val*y,x,y);</span><br><span class="line">	dij.<span class="built_in">add</span>(val*x*y,x,y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nQuery</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> d.<span class="built_in">query</span>(x,y)*(x+<span class="number">1</span>)*(y+<span class="number">1</span>)-di.<span class="built_in">query</span>(x,y)*(y+<span class="number">1</span>)-dj.<span class="built_in">query</span>(x,y)*(x+<span class="number">1</span>)+dij.<span class="built_in">query</span>(x,y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以看出相邻两层存储器速度相差数倍。相同计算量的情况下，仅仅访问的内存不同，就能产生五十几倍的时间差异。只有用好L1缓存，才能做到“暴力出奇迹”。虽然一般题目会给几百MB的空间限制，但是少而集中地使用内存，无形中能减小许多常数。</p>
+<p>这段代码来自二维树状数组模板题<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4514">《上帝造题的七分钟》</a>，极限数据下它的用时比两重循环的写法少 50%，不知道为啥这么快。</p>
+<p>然后写上快读和指令集，把 4 个用 <code>int</code> 的二维树状数组换成 1 个用 128 位向量的二维树状数组，就能冲最优解。</p>
 
     </div>
 
@@ -286,21 +238,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%8D%A1%E5%B8%B8/" rel="tag"># 卡常</a>
+              <a href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag"># 代码</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B05/" rel="prev" title="班级日记5">
-                  <i class="fa fa-chevron-left"></i> 班级日记5
+                <a href="/From-the-Computer/" rel="prev" title="From the Computer">
+                  <i class="fa fa-chevron-left"></i> From the Computer
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/%E8%AE%B0%E6%9F%90%E5%AD%A6%E4%B8%9A%E6%B0%B4%E5%B9%B3%E8%80%83%E8%AF%95/" rel="next" title="记某学业水平考试">
-                  记某学业水平考试 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
