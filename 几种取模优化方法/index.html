@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.0.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"positivefirst.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+
+
+<link rel="canonical" href="http://positivefirst.github.io/%E5%87%A0%E7%A7%8D%E5%8F%96%E6%A8%A1%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/%E5%87%A0%E7%A7%8D%E5%8F%96%E6%A8%A1%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/","path":"几种取模优化方法/","title":"几种取模优化方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>几种取模优化方法 | 用心做事 潜力无穷</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">用心做事 潜力无穷</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-收藏夹"><a href="/collections/" rel="section"><i class="fa fa-star fa-fw"></i>收藏夹</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-班级日记"><a href="/tags/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B0/" rel="section"><i class="fa fa-book fa-fw"></i>班级日记</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E4%BC%98%E5%8C%96"><span class="nav-text">编译器优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E4%BC%98%E5%8C%96"><span class="nav-text">不优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E9%99%A4%E6%B3%95"><span class="nav-text">浮点数除法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Barrett-Reduction"><span class="nav-text">Barrett Reduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Montgomery-Multiplication"><span class="nav-text">Montgomery Multiplication</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">positive1</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-graduation-cap fa-fw"></i>
+      博客导师
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://beelake.github.io/" title="https:&#x2F;&#x2F;beelake.github.io&#x2F;" rel="noopener" target="_blank">Beelake</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://doflake.github.io/" title="https:&#x2F;&#x2F;doflake.github.io&#x2F;" rel="noopener" target="_blank">Doflake</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://scapegoattree316.github.io/" title="https:&#x2F;&#x2F;scapegoattree316.github.io&#x2F;" rel="noopener" target="_blank">Scapegoattree316</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/%E5%87%A0%E7%A7%8D%E5%8F%96%E6%A8%A1%E4%BC%98%E5%8C%96%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="positive1">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="用心做事 潜力无穷">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="几种取模优化方法 | 用心做事 潜力无穷">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          几种取模优化方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-01-06 11:25:29" itemprop="dateCreated datePublished" datetime="2023-01-06T11:25:29+08:00">2023-01-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>斗胆续写<a target="_blank" rel="noopener" href="https://loj.ac/d/327">《几种取模优化方法（译自 min-25 的博客）》</a>。</p>
+<p>用来测试常数的计算任务是 $p\gets p\times p$，重复 $10^8$ 次，并对某个数取模。下表是各种优化方式的平均用时，单位为毫秒。</p>
+<table>
+<thead>
+<tr>
+<th>优化方式</th>
+<th>32 位模数</th>
+<th>64 位模数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>编译器优化</td>
+<td>423</td>
+<td>2742</td>
+</tr>
+<tr>
+<td>不优化</td>
+<td>1259</td>
+<td>2691</td>
+</tr>
+<tr>
+<td>浮点数除法</td>
+<td>983</td>
+<td>1182</td>
+</tr>
+<tr>
+<td>Barrett Reduction</td>
+<td>433</td>
+<td>641</td>
+</tr>
+<tr>
+<td>Montgomery Multiplication</td>
+<td>338</td>
+<td>310</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<p>测试环境：SOJ，C++14，默认 O2。只有 Barrett Reduction 的代码用了一些先进的语法，于是开 C++17。</p>
+<p>32 位模数在 $10^8+7\sim 10^9+7$ 选取。64 位模数在 $10^{17}+3\sim 10^{18}+3$ 选取。质数合数都有。</p>
+<h3 id="编译器优化"><a href="#编译器优化" class="headerlink" title="编译器优化"></a>编译器优化</h3><p>把模数用 <code>constexpr</code> 修饰。</p>
+<p>32 位模数编译器实现了 Barrett Reduction（可以看汇编），64 位模数编译器似乎不优化。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> mod=<span class="number">1000000007</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t,p;</span><br><span class="line">	cin&gt;&gt;t&gt;&gt;p;</span><br><span class="line">	<span class="keyword">while</span>(t--) p=(<span class="keyword">long</span> <span class="keyword">long</span>)p*p%mod;</span><br><span class="line">	cout&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试 64 位模数的时候，把 <code>int</code> 改成 <code>long long</code>，<code>long long</code> 改成 <code>__int128</code>。</p>
+<h3 id="不优化"><a href="#不优化" class="headerlink" title="不优化"></a>不优化</h3><p>对照组。跟上面几乎一样，除了模数由输入给定。</p>
+<h3 id="浮点数除法"><a href="#浮点数除法" class="headerlink" title="浮点数除法"></a>浮点数除法</h3><p>名字是我起的。看到有人这么写（64 位模数）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p=p*p-mod*(<span class="keyword">long</span> <span class="keyword">long</span>)((<span class="keyword">long</span> <span class="keyword">double</span>)(p)*p/mod);</span><br></pre></td></tr></table></figure>
+
+<p>首先这是未定义行为，因为 <code>p*p</code> 很可能发生有符号整型溢出。但是减号右边也会溢出，只要两边的差不会溢出就行。然后浮点数有精度误差，所以运算结果可能比 0 小一点，也可能比模数大一点。在我选取的 64 位模数中，如果模数是 $m$，则 $10^8$ 次运算结果均位于 $-0.1m\sim 1.01m$。所以在输出的时候用 <code>(p%mod+mod)%mod</code> 就没事了。暂时没发现正确性问题。</p>
+<p>128 位浮点数除法竟然比 128 位整数除法快？！不知道为啥。</p>
+<p>此外，这段代码的 Python 版本跑得比朴素的取模慢（无论 CPython 还是 PyPy）。</p>
+<h3 id="Barrett-Reduction"><a href="#Barrett-Reduction" class="headerlink" title="Barrett Reduction"></a>Barrett Reduction</h3><p>代码改编自：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/98253452">https://www.luogu.com.cn/record/98253452</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="keyword">class</span> <span class="title">Enable</span> =</span> <span class="keyword">void</span>&gt; <span class="class"><span class="keyword">struct</span> <span class="title">Singleton</span> &#123;</span>&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Singleton</span>&lt;</span>T, std::<span class="keyword">enable_if_t</span>&lt;std::is_default_constructible_v&lt;T&gt;&gt;&gt; &#123;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> T &amp;<span class="title">instance</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> T store;</span><br><span class="line">    <span class="keyword">return</span> store;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">namespace</span> barrett_details &#123;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> M&gt; <span class="class"><span class="keyword">struct</span> <span class="title">Multiplier</span>;</span></span><br><span class="line"><span class="keyword">template</span> &lt;&gt; <span class="class"><span class="keyword">struct</span> <span class="title">Multiplier</span>&lt;</span><span class="keyword">uint32_t</span>&gt; &#123;</span><br><span class="line">  <span class="keyword">using</span> M2 = <span class="keyword">uint64_t</span>;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> M2 <span class="title">mul_hi</span><span class="params">(M2 x, M2 y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">static_cast</span>&lt;<span class="keyword">__uint128_t</span>&gt;(x) * <span class="keyword">static_cast</span>&lt;<span class="keyword">__uint128_t</span>&gt;(y) &gt;&gt; <span class="number">64</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;&gt; <span class="class"><span class="keyword">struct</span> <span class="title">Multiplier</span>&lt;</span><span class="keyword">uint64_t</span>&gt; &#123;</span><br><span class="line">  <span class="keyword">using</span> M2 = <span class="keyword">__uint128_t</span>;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> M2 <span class="title">mul_hi</span><span class="params">(M2 x, M2 y)</span> </span>&#123;</span><br><span class="line">    M2 x_lo = x &amp; UINT64_MAX;</span><br><span class="line">    M2 x_hi = x &gt;&gt; <span class="number">64</span>;</span><br><span class="line">    M2 y_lo = y &amp; UINT64_MAX;</span><br><span class="line">    M2 y_hi = y &gt;&gt; <span class="number">64</span>;</span><br><span class="line">    M2 lo_lo = x_lo * y_lo;</span><br><span class="line">    M2 hi_lo = x_hi * y_lo;</span><br><span class="line">    M2 lo_hi = x_lo * y_hi;</span><br><span class="line">    M2 cy = (hi_lo &amp; UINT64_MAX) + (lo_hi &amp; UINT64_MAX) + (lo_lo &gt;&gt; <span class="number">64</span>);</span><br><span class="line">    <span class="keyword">return</span> x_hi * y_hi + (hi_lo &gt;&gt; <span class="number">64</span>) + (lo_hi &gt;&gt; <span class="number">64</span>) + (cy &gt;&gt; <span class="number">64</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> M, <span class="keyword">int</span> PHANTOM&gt; <span class="class"><span class="keyword">struct</span> <span class="title">BarrettModBaseT</span> &#123;</span></span><br><span class="line">  <span class="keyword">using</span> M2 = <span class="keyword">typename</span> Multiplier&lt;M&gt;::M2;</span><br><span class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = M&gt;</span><br><span class="line">  <span class="keyword">explicit</span> <span class="keyword">constexpr</span> <span class="built_in">BarrettModBaseT</span>(T x_ = <span class="number">0</span>) : x&#123;<span class="keyword">static_cast</span>&lt;M&gt;(x_)&#125; &#123;&#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">constexpr</span> BarrettModBaseT <span class="built_in">mul_id</span>() &#123; <span class="keyword">return</span> BarrettModBaseT&#123;<span class="number">1</span>&#125;; &#125;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set_mod</span><span class="params">(M mod_)</span> </span>&#123; <span class="built_in">store</span>().<span class="built_in">set_mod</span>(mod_); &#125;</span><br><span class="line">  <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T = M2&gt;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">constexpr</span> std::<span class="keyword">enable_if_t</span>&lt;std::is_integral_v&lt;T&gt;, BarrettModBaseT&gt;</span><br><span class="line">  <span class="built_in">normalize</span>(T x) &#123;</span><br><span class="line">    <span class="keyword">return</span> BarrettModBaseT&#123;<span class="built_in">reduce</span>(x)&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> M <span class="title">mod</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">store</span>().mod; &#125;</span><br><span class="line">  <span class="function"><span class="keyword">constexpr</span> M <span class="title">get</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> x; &#125;</span><br><span class="line">  <span class="keyword">constexpr</span> BarrettModBaseT &amp;<span class="keyword">operator</span>+=(<span class="keyword">const</span> BarrettModBaseT &amp;other) &#123;</span><br><span class="line">    x += other.x;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="built_in">mod</span>()) &#123;</span><br><span class="line">      x -= <span class="built_in">mod</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">constexpr</span> BarrettModBaseT <span class="keyword">operator</span>+(<span class="keyword">const</span> BarrettModBaseT &amp;other) <span class="keyword">const</span> &#123;</span><br><span class="line">    BarrettModBaseT copy = *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> copy += other;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">constexpr</span> BarrettModBaseT &amp;<span class="keyword">operator</span>-=(<span class="keyword">const</span> BarrettModBaseT &amp;other) &#123;</span><br><span class="line">    x += <span class="built_in">mod</span>() - other.x;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= <span class="built_in">mod</span>()) &#123;</span><br><span class="line">      x -= <span class="built_in">mod</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">constexpr</span> BarrettModBaseT <span class="keyword">operator</span>-() <span class="keyword">const</span> &#123;</span><br><span class="line">    BarrettModBaseT copy&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    copy -= *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> copy;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">constexpr</span> BarrettModBaseT <span class="keyword">operator</span>-(<span class="keyword">const</span> BarrettModBaseT &amp;other) <span class="keyword">const</span> &#123;</span><br><span class="line">    BarrettModBaseT copy = *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> copy -= other;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">constexpr</span> BarrettModBaseT <span class="keyword">operator</span>*=(<span class="keyword">const</span> BarrettModBaseT &amp;other) &#123;</span><br><span class="line">    x = <span class="built_in">reduce</span>(<span class="keyword">static_cast</span>&lt;M2&gt;(x) * <span class="keyword">static_cast</span>&lt;M2&gt;(other.x));</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">constexpr</span> BarrettModBaseT <span class="keyword">operator</span>*(<span class="keyword">const</span> BarrettModBaseT &amp;other) <span class="keyword">const</span> &#123;</span><br><span class="line">    BarrettModBaseT copy = *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">return</span> copy *= other;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">constexpr</span> BarrettModBaseT <span class="title">inv</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x == <span class="number">1</span></span><br><span class="line">               ? BarrettModBaseT&#123;<span class="number">1</span>&#125;</span><br><span class="line">               : -BarrettModBaseT&#123;<span class="built_in">mod</span>() / x&#125; * BarrettModBaseT&#123;<span class="built_in">mod</span>() % x&#125;.<span class="built_in">inv</span>();</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">Store</span> &#123;</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">set_mod</span><span class="params">(M mod_)</span> </span>&#123;</span><br><span class="line">      mod = mod_;</span><br><span class="line">      inv_mod = <span class="keyword">static_cast</span>&lt;M2&gt;(<span class="number">-1</span>) / mod - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">M <span class="title">reduce</span><span class="params">(M2 x)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">      <span class="keyword">auto</span> q = Multiplier&lt;M&gt;::<span class="built_in">mul_hi</span>(x, inv_mod);</span><br><span class="line">      <span class="keyword">auto</span> r = x - q * mod;</span><br><span class="line">      <span class="keyword">return</span> r &gt;= mod ? r - mod : r;</span><br><span class="line">    &#125;</span><br><span class="line">    M mod;</span><br><span class="line">    M2 inv_mod;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> Store &amp;<span class="title">store</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> Singleton&lt;Store&gt;::<span class="built_in">instance</span>(); &#125;</span><br><span class="line">  <span class="function"><span class="keyword">static</span> M <span class="title">reduce</span><span class="params">(M2 x_)</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">store</span>().<span class="built_in">reduce</span>(x_); &#125;</span><br><span class="line">  M x;</span><br><span class="line">&#125;;</span><br><span class="line">&#125; <span class="comment">// namespace barrett_details</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">int</span> PHANTOM = <span class="number">0</span>&gt;</span><br><span class="line"><span class="keyword">using</span> BarrettModT = barrett_details::BarrettModBaseT&lt;<span class="keyword">uint32_t</span>, PHANTOM&gt;;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">int</span> PHANTOM = <span class="number">0</span>&gt;</span><br><span class="line"><span class="keyword">using</span> BarrettMod64T = barrett_details::BarrettModBaseT&lt;<span class="keyword">uint64_t</span>, PHANTOM&gt;;</span><br><span class="line"><span class="keyword">using</span> Mod = BarrettMod64T&lt;&gt;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> p,mod;</span><br><span class="line">	cin&gt;&gt;t&gt;&gt;p&gt;&gt;mod;</span><br><span class="line">	Mod::<span class="built_in">set_mod</span>(mod);</span><br><span class="line">	Mod q=Mod::<span class="built_in">normalize</span>(p);</span><br><span class="line">	<span class="keyword">while</span>(t--) q*=q;</span><br><span class="line">	cout&lt;&lt;q.<span class="built_in">get</span>()&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Montgomery-Multiplication"><a href="#Montgomery-Multiplication" class="headerlink" title="Montgomery Multiplication"></a>Montgomery Multiplication</h3><p>要求模数为奇数。</p>
+<p>它在 64 位模数甚至跑得比 32 位模数还快。但是加法略慢于 Barrett Reduction。</p>
+<p><a target="_blank" rel="noopener" href="https://cp-algorithms.com/algebra/montgomery_multiplication.html">Algorithms for Competitive Programming (cp-algorithms.com)</a> 给出了 128 位模数的代码，而且原理讲得很清楚。</p>
+<p>代码改编自：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/record/83790836">https://www.luogu.com.cn/record/83790836</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> i32,<span class="keyword">typename</span> u32,<span class="keyword">typename</span> u64&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LazyMontgomeryModInt</span> &#123;</span></span><br><span class="line">	<span class="keyword">using</span> mint = LazyMontgomeryModInt;</span><br><span class="line">	<span class="keyword">static</span> u32 mod,r,n2;</span><br><span class="line">	<span class="function"><span class="keyword">static</span> u32 <span class="title">get_r</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		u32 ret = mod;</span><br><span class="line">		<span class="keyword">for</span> (i32 i = <span class="number">0</span>; i &lt; <span class="number">5</span>; ++i) ret *= <span class="number">2</span> - mod * ret;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">set_mod</span><span class="params">(u32 _mod)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		mod=_mod;</span><br><span class="line">		r=<span class="built_in">get_r</span>();</span><br><span class="line">		n2=-<span class="built_in">u64</span>(mod)%mod;</span><br><span class="line">		<span class="built_in">assert</span>(r*mod==<span class="number">1</span>);</span><br><span class="line">		<span class="built_in">assert</span>((mod&amp;<span class="number">1</span>)==<span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	u32 a;</span><br><span class="line">	<span class="built_in">LazyMontgomeryModInt</span>() : <span class="built_in">a</span>(<span class="number">0</span>) &#123;&#125;</span><br><span class="line">	<span class="built_in">LazyMontgomeryModInt</span>(<span class="keyword">const</span> <span class="keyword">int64_t</span> &amp;b)</span><br><span class="line">			: <span class="built_in">a</span>(<span class="built_in">reduce</span>(<span class="built_in">u64</span>(b % mod + mod) * n2))&#123;&#125;;</span><br><span class="line">	<span class="function"><span class="keyword">static</span> u32 <span class="title">reduce</span><span class="params">(<span class="keyword">const</span> u64 &amp;b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (b + <span class="built_in">u64</span>(<span class="built_in">u32</span>(b) * <span class="built_in">u32</span>(-r)) * mod) &gt;&gt; <span class="number">8</span> * <span class="built_in"><span class="keyword">sizeof</span></span>(u32);</span><br><span class="line">	&#125;</span><br><span class="line">	mint &amp;<span class="keyword">operator</span>+=(<span class="keyword">const</span> mint &amp;b) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">i32</span>(a += b.a - <span class="number">2</span> * mod) &lt; <span class="number">0</span>) a += <span class="number">2</span> * mod;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	mint &amp;<span class="keyword">operator</span>-=(<span class="keyword">const</span> mint &amp;b) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">i32</span>(a -= b.a) &lt; <span class="number">0</span>) a += <span class="number">2</span> * mod;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	mint &amp;<span class="keyword">operator</span>*=(<span class="keyword">const</span> mint &amp;b) &#123;</span><br><span class="line">		a = <span class="built_in">reduce</span>(<span class="built_in">u64</span>(a) * b.a);</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	mint &amp;<span class="keyword">operator</span>/=(<span class="keyword">const</span> mint &amp;b) &#123;</span><br><span class="line">		*<span class="keyword">this</span> *= b.<span class="built_in">inverse</span>();</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	mint <span class="keyword">operator</span>+(<span class="keyword">const</span> mint &amp;b) <span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="built_in">mint</span>(*<span class="keyword">this</span>) += b; &#125;</span><br><span class="line">	mint <span class="keyword">operator</span>-(<span class="keyword">const</span> mint &amp;b) <span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="built_in">mint</span>(*<span class="keyword">this</span>) -= b; &#125;</span><br><span class="line">	mint <span class="keyword">operator</span>*(<span class="keyword">const</span> mint &amp;b) <span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="built_in">mint</span>(*<span class="keyword">this</span>) *= b; &#125;</span><br><span class="line">	mint <span class="keyword">operator</span>/(<span class="keyword">const</span> mint &amp;b) <span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="built_in">mint</span>(*<span class="keyword">this</span>) /= b; &#125;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span>==(<span class="keyword">const</span> mint &amp;b) <span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="built_in"><span class="keyword">return</span></span> (a &gt;= mod ? a - mod : a) == (b.a &gt;= mod ? b.a - mod : b.a);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span>!=(<span class="keyword">const</span> mint &amp;b) <span class="keyword">const</span> &#123;</span><br><span class="line">		<span class="built_in"><span class="keyword">return</span></span> (a &gt;= mod ? a - mod : a) != (b.a &gt;= mod ? b.a - mod : b.a);</span><br><span class="line">	&#125;</span><br><span class="line">	mint <span class="keyword">operator</span>-() <span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="built_in">mint</span>() - <span class="built_in">mint</span>(*<span class="keyword">this</span>); &#125;</span><br><span class="line">	<span class="function">mint <span class="title">pow</span><span class="params">(u64 n)</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">		<span class="function">mint <span class="title">ret</span><span class="params">(<span class="number">1</span>)</span>, <span class="title">mul</span><span class="params">(*<span class="keyword">this</span>)</span></span>;</span><br><span class="line">		<span class="keyword">while</span> (n &gt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (n &amp; <span class="number">1</span>) ret *= mul;</span><br><span class="line">			mul *= mul;</span><br><span class="line">			n &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ret;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">mint <span class="title">inverse</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> <span class="built_in">pow</span>(mod - <span class="number">2</span>); &#125;</span><br><span class="line">	<span class="keyword">friend</span> ostream &amp;<span class="keyword">operator</span>&lt;&lt;(ostream &amp;os, <span class="keyword">const</span> mint &amp;b) &#123;</span><br><span class="line">		<span class="keyword">return</span> os &lt;&lt; b.<span class="built_in">get</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">friend</span> istream &amp;<span class="keyword">operator</span>&gt;&gt;(istream &amp;is, mint &amp;b) &#123;</span><br><span class="line">		<span class="keyword">int64_t</span> t;</span><br><span class="line">		is &gt;&gt; t;</span><br><span class="line">		b = <span class="built_in">mint</span>(t);</span><br><span class="line">		<span class="keyword">return</span> (is);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">u32 <span class="title">get</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">		u32 ret = <span class="built_in">reduce</span>(a);</span><br><span class="line">		<span class="keyword">return</span> ret &gt;= mod ? ret - mod : ret;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">static</span> u32 <span class="title">get_mod</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> mod; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">using</span> mint32=LazyMontgomeryModInt&lt;<span class="keyword">int32_t</span>,<span class="keyword">uint32_t</span>,<span class="keyword">uint64_t</span>&gt;;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;<span class="keyword">uint32_t</span> mint32::mod=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;<span class="keyword">uint32_t</span> mint32::r=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;<span class="keyword">uint32_t</span> mint32::n2=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">using</span> mint64=LazyMontgomeryModInt&lt;<span class="keyword">int64_t</span>,<span class="keyword">uint64_t</span>,<span class="keyword">__uint128_t</span>&gt;;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;<span class="keyword">uint64_t</span> mint64::mod=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;<span class="keyword">uint64_t</span> mint64::r=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">template</span>&lt;&gt;<span class="keyword">uint64_t</span> mint64::n2=<span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> p,mod;</span><br><span class="line">	cin&gt;&gt;t&gt;&gt;p&gt;&gt;mod;</span><br><span class="line">	mint64::<span class="built_in">set_mod</span>(mod);</span><br><span class="line">	<span class="function">mint64 <span class="title">q</span><span class="params">(p)</span></span>;</span><br><span class="line">	<span class="keyword">while</span>(t--) q*=q;</span><br><span class="line">	cout&lt;&lt;q&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%A1%E5%B8%B8/" rel="tag"># 卡常</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/A-Glimpse-of-Ubuntu/" rel="prev" title="A Glimpse of Ubuntu">
+                  <i class="fa fa-chevron-left"></i> A Glimpse of Ubuntu
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">positive1</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.1/es5/tex-mml-chtml.js","integrity":"sha256-hlC2uSQYTmPsrzGZTEQEg9PZ1a/+SV6VBCTclohf2og="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
