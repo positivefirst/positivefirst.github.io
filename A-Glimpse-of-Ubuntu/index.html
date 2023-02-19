@@ -104,7 +104,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E4%B9%8B%E5%89%8D"><span class="nav-text">开机之前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Welcome"><span class="nav-text">Welcome</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%B5%84%E6%96%99"><span class="nav-text">生产资料</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E4%B9%8B%E5%89%8D"><span class="nav-text">开机之前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Welcome"><span class="nav-text">Welcome</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E4%BA%A7%E8%B5%84%E6%96%99"><span class="nav-text">生产资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9F%E9%80%9A"><span class="nav-text">速通</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -241,6 +241,10 @@
 <p>怀着敬畏的心打开 vim。听说有很多人不知道怎么退出 vim，还好这是 NOI 笔试题。个人认为 vim 入门的门槛不如 Linux 高。vim 甚至有自己的脚本语言 vimscript，这意味着它能自定义的东西太多了。我在网上找到了括号补全、自定义光标、一键编译——总不能输给Dev-C++吧。</p>
 <p><img src="vim.png" alt="vim"></p>
 <p>vim 真的是多少投入多少收获，一个没有图形化界面的编辑器，在简洁和复杂上都做到了极致。如果结尾需要升华的话，我想说这也是我喜欢 Linux 的原因。</p>
+<h3 id="速通"><a href="#速通" class="headerlink" title="速通"></a>速通</h3><p>（更新于 2023.2.19）</p>
+<p>每次配置 Ubuntu 都要上网查指令，多麻烦啊。下面是设置完用户名、密码之后我做的事情。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">echo -e &quot;[boot]\nsystemd=true&quot; | sudo tee -a /etc/wsl.conf</span><br><span class="line">wsl --shutdown # 在 PowerShell 上执行</span><br><span class="line">sudo sed -i &quot;s@http://.*archive.ubuntu.com@https://mirrors.tuna.tsinghua.edu.cn@g&quot; /etc/apt/sources.list</span><br><span class="line">sudo sed -i &quot;s@http://.*security.ubuntu.com@https://mirrors.tuna.tsinghua.edu.cn@g&quot; /etc/apt/sources.list</span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br><span class="line">sudo snap install firefox</span><br><span class="line">sudo apt-get install language-pack-zh-hans</span><br><span class="line">sudo apt-get install ttf-wqy-microhei</span><br><span class="line">sudo localectl set-locale LANG=zh_CN.UTF8 # 新开一个窗口以启用更改</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
