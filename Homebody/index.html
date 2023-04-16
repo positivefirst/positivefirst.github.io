@@ -22,14 +22,14 @@
 
 
 
-<link rel="canonical" href="http://positivefirst.github.io/exBIT/">
+<link rel="canonical" href="http://positivefirst.github.io/Homebody/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/exBIT/","path":"exBIT/","title":"用可变参数模板实现任意维树状数组"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/Homebody/","path":"Homebody/","title":"所欲有甚于宅者"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>用可变参数模板实现任意维树状数组 | 用心做事 潜力无穷</title>
+<title>所欲有甚于宅者 | 用心做事 潜力无穷</title>
   
 
 
@@ -177,7 +177,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/exBIT/">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/Homebody/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -190,12 +190,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="用可变参数模板实现任意维树状数组 | 用心做事 潜力无穷">
+      <meta itemprop="name" content="所欲有甚于宅者 | 用心做事 潜力无穷">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          用可变参数模板实现任意维树状数组
+          所欲有甚于宅者
         </h1>
 
         <div class="post-meta-container">
@@ -206,7 +206,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-09-11 16:30:50" itemprop="dateCreated datePublished" datetime="2022-09-11T16:30:50+08:00">2022-09-11</time>
+      <time title="创建时间：2023-01-22 11:39:21" itemprop="dateCreated datePublished" datetime="2023-01-22T11:39:21+08:00">2023-01-22</time>
     </span>
 
   
@@ -219,16 +219,48 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><code>tuple</code> 是可变参数模板现成的例子，阅读源码可知其使用 <code>...</code> 语法实现了魔幻的操作。另一方面高维树状数组每一维都在干类似的事情，这为递归提供了便利。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">unsigned</span> ...ns&gt;<span class="class"><span class="keyword">struct</span> <span class="title">BIT</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BIT</span>&lt;</span>&gt;<span class="comment">//0维树状数组：单点加单点查询</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="built_in">BIT</span>():<span class="built_in">x</span>(<span class="number">0</span>)&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		x+=v;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">unsigned</span> n,<span class="keyword">unsigned</span> ...ns&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BIT</span>&lt;</span>n,ns...&gt;</span><br><span class="line">&#123;</span><br><span class="line">	BIT&lt;ns...&gt;x[n];</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class ...args&gt;</span></span><br><span class="line"><span class="function">	<span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> v,<span class="keyword">unsigned</span> i,args ...is)</span><span class="comment">//单点加v，下标出现0会死循环</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(;i&lt;n;i+=(i&amp;-i)) x[i].<span class="built_in">add</span>(v,is...);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class ...args&gt;</span></span><br><span class="line"><span class="function">	<span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">unsigned</span> i,args ...is)</span><span class="comment">//求前缀和</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(;i;i-=(i&amp;-i)) sum+=x[i].<span class="built_in">query</span>(is...);</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+        <p><img src="https://img.wzf2000.top/image/2023/02/19/winter-title.jpg" alt="title" title="看不到我_(:зゝ∠)_"></p>
+<p>耗时两个冬天，全方位多层次宽领域表现小区的精彩！<font size=1>某些图片有隐藏文字。</font></p>
 <span id="more"></span>
 
-<p>使用示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">BIT&lt;<span class="number">2049</span>,<span class="number">2049</span>&gt;d,di,dj,dij;<span class="comment">//2049*2049的二维树状数组，和定义数组一样方便！</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vAdd</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	d.<span class="built_in">add</span>(val,x,y);</span><br><span class="line">	di.<span class="built_in">add</span>(val*x,x,y);</span><br><span class="line">	dj.<span class="built_in">add</span>(val*y,x,y);</span><br><span class="line">	dij.<span class="built_in">add</span>(val*x*y,x,y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nQuery</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> d.<span class="built_in">query</span>(x,y)*(x+<span class="number">1</span>)*(y+<span class="number">1</span>)-di.<span class="built_in">query</span>(x,y)*(y+<span class="number">1</span>)-dj.<span class="built_in">query</span>(x,y)*(x+<span class="number">1</span>)+dij.<span class="built_in">query</span>(x,y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码来自二维树状数组模板题<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4514">《上帝造题的七分钟》</a>，极限数据下它的用时比两重循环的写法少 50%，不知道为啥这么快。</p>
-<p>然后写上快读和指令集，把 4 个用 <code>int</code> 的二维树状数组换成 1 个用 128 位向量的二维树状数组，就能冲最优解。</p>
+<p>迎接 2023 年的第一缕阳光。</p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/10.jpg" alt="10" title="祝愿祖国繁荣昌盛、国泰民安！祝愿世界和平美好、幸福安宁！"></p>
+<p>早起的鸽子……上房顶？</p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/11.jpg" alt="11"></p>
+<p>这是高冷的白鹭离镜头最近的一次。</p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/22.jpg" alt="22" title="它飞过我头顶多少次，我都反应不过来"></p>
+<p>我最喜欢脱掉叶子的树，冬天这样的树有的是。从树底往上看，忽略掉所有细节（傍晚可以帮我们做到这一点），它们是那种可以插入删除分裂合并二分倍增分治遍历旋转哈希计数的拓扑结构的投影。</p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/14.jpg" alt="14"></p>
+<p>这是一棵树</p>
+<p>却不仅仅是一棵树</p>
+<p>木商察觉到木料的价值</p>
+<p>植物学家细致地开始分科</p>
+<p>画家只管欣赏一枝一叶的情调</p>
+<p>这是朱光潜先生描述的三种知觉方式</p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/15.jpg" alt="15"></p>
+<p>我想</p>
+<p>还不够全面</p>
+<p>一名信息学竞赛选手看到的</p>
+<p>大概是一棵倒悬的 SPLAY</p>
+<p>把这棵树旋转一下</p>
+<p>它一定会死</p>
+<p>而在信息之海中</p>
+<p>它能越旋转越鲜活</p>
+<p>这就是信息学精神</p>
+<p>源于现实 高于现实</p>
+<p>——《什么是信息学精神》</p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/16.jpg" alt="16"></p>
+<p>在这个小区住了十年，我还没有登上过除了自己家那栋楼外的楼顶。某天突然打算去别的楼顶看看。</p>
+<p>第一栋探索很顺利。楼顶居然安装了洗手台和马桶，虽然落着灰。四面八方都有房间可以拍照。</p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/1.jpg" alt="1"></p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/2.jpg" alt="2"></p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/4.jpg" alt="4" title="15:41，阳光已经是稀缺资源"></p>
+<p>然后我想去小区最高的那栋楼。进去才知道坐这栋楼的电梯要刷卡。共 21 层，咬牙爬吧。楼梯光线很暗，没有窗户，也没有别的通风设备。怕脚扭，长期不锻炼，再加上缺氧，克服重力做功异常困难。17 层之后就得爬一层歇一层。这 21 层楼我爬了 10 分钟。</p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/5.jpg" alt="5"></p>
+<p>等我重新见到太阳，眼睛已经不能正常对焦了。楼顶连坐的地方都没有，我只好站着休息了 10 分钟。下面展示本文拍摄成本最高的两张图片。</p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/8.jpg" alt="8"></p>
+<p><img src="https://img.wzf2000.top/image/2023/03/11/9.jpg" alt="9" title="重在过程，不是吗？"></p>
+<p>所幸下到一楼可以坐电梯。在电梯里我耳朵感觉到了气压变化，而平时住 9 楼没有这种感觉。</p>
 
     </div>
 
@@ -238,20 +270,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag"># 代码</a>
+              <a href="/tags/%E5%9B%BE%E7%89%87/" rel="tag"># 图片</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/From-the-Computer/" rel="prev" title="From the Computer">
-                  <i class="fa fa-chevron-left"></i> From the Computer
+                <a href="/Modular-Optimization/" rel="prev" title="几种取模优化方法">
+                  <i class="fa fa-chevron-left"></i> 几种取模优化方法
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/CSP-S2022/" rel="next" title="CSP-S2022 游记">
-                  CSP-S2022 游记 <i class="fa fa-chevron-right"></i>
+                <a href="/UNOI2023/" rel="next" title="省选联考 2023 游记">
+                  省选联考 2023 游记 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
