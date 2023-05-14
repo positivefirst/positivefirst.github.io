@@ -73,7 +73,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-收藏夹"><a href="/collections/" rel="section"><i class="fa fa-star fa-fw"></i>收藏夹</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-班级日记"><a href="/tags/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B0/" rel="section"><i class="fa fa-book fa-fw"></i>班级日记</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-收藏夹"><a href="/collections/" rel="section"><i class="fa fa-star fa-fw"></i>收藏夹</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-班级日记"><a href="/%E7%8F%AD%E7%BA%A7%E6%97%A5%E8%AE%B0/" rel="section"><i class="fa fa-book fa-fw"></i>班级日记</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
   </ul>
 </nav>
 
@@ -294,10 +294,8 @@
 <li>ZYZ拉HYX去灌水，拼命拉HYX的袖子，把袖子拉长了一截</li>
 <li>中午事儿有点多，有打架的，有拍桌子的，有尖叫，有狂笑的，总体和平，局部战乱，让人心惊肉跳</li>
 </ul>
-<p>2022/5/3 ZJOI Day1</p>
-<p>7:30进校，直接走到考场隔壁的机房。没有电，半睡半醒地度过了30分钟，该进场了。让我比较意外的是一张《MD5码生成手册和登记表》。g++9.3.0，比我平常用的版本高很多，能支持（至少）C++17。输密码花了些时间（老师也分不清I和l），看到题面已经是8:33。不愧是ZJOI，果然一题都不会。感觉T3的40分最好拿，建圆方树，算一下贡献，10:17写完。没看懂“任意两个简单环的边权和相等”，又把边权改掉有啥用。T2 $O(n^3)$随便写，枚举区间内和区间外的众数，是$O(n\times V^2)$（V为离散化后的值域）。40分有了，感觉后面有数据结构的气息，不会了。此时是11:32，向数数题T1宣战。应该可以DP，我写完8条转移方程后发现题读错了，还剩不到40分钟。最后写了$O(n^4)$空间但$O(n^5)$时间的DP，12:38一遍过样例。最后10分钟去生成MD5码，没想到考试结束后老师才要求生成。老师给每个考生的屏幕（显示着3条MD5码和时间）用手机拍照，又经过了一些仪式，13:20左右才能出考场。不知道啥时候发了矿泉水、酸奶和面包。怕尿憋不住，4.5个小时才喝了200ml水。等待离场的漫长的20分钟里喝掉了酸奶。预计40+40+40=120。</p>
-<p>2022/5/4 ZJOI Day2</p>
-<p>7:39进校，这次我带了语文作业。3道多组数据，3道998244353，前半个小时一点思路都没有。T1写个矩阵快速幂吧。发现一个性质：“拉面”操作若干次后，a中不同的数的个数会远少于n，比较极端的情况是$n=2^k$与$n=3\times 2^k$，这可以大大缩小矩阵的规模。在我的电脑上开500*500*60的long long数组会没有警告（即使开-Wall）地RE，非常搞人心态，缩小到250*250*60才可以跑。没时间测常熟和正确性，现在是11:22，来不及了！T2 a&lt;=3有一堆分，题目中的两个问题可以用同一个状压DP做。然后就一直过不去样例，考试结束前10分钟我“灵机一动”地把一个位移运算反向，居然过样例了，我甚至没法解释原因。T3就放弃吧。今天生成MD5码的方式变高级了，下发一个Python程序，少输很多指令。预计45+20+0=65。</p>
+<p>2022/5/3~2022/5/4</p>
+<p>ZJOI</p>
 <p>2022/5/5</p>
 <ul>
 <li>一只鸟落在教室外走廊的窗台上</li>
@@ -388,16 +386,8 @@
 <li>JZH分发15杯奶茶</li>
 <li>ZQY英语晚读时（以语块词组为基础）提有趣的问题，吸引周围同学争相回答</li>
 </ul>
-<p>2022/5/21 PKUSC Day1</p>
-<p>“上有政策，下有对策”要求一个选手一个房间——通过合理安排摄像头和麦克风角度，五六个人在一个房间也看不出来。不得使用耳机——找到摄像头盲区，比如我把耳机摆在右边电脑显示器和自己电脑的机箱上。早上开幕式。用去年的D1T1试机。吃完中饭不知道该干什么，于是折纸飞机玩，上一次折大概还是在小学。我居然还会折。13:00开始测试。T1如果只有一个号就是经典的带状高斯消元。两个号呢？把rating高的作为第一维DP，rating低的仍然跑高斯消元。$O(n^2m^2)$。说起来好简单哦，但是一直过不去样例。16:00左右开始心慌，感觉要调不出来，赶紧去冲T2O(nq) 18分暴力。写完感觉脑子清醒一些，终于在16:25拿了T1 69分。最后冲T3 n&lt;=2的12分。我没有判n=1，但也过了subtask1。得分69+18+12=99。</p>
-<p>2022/5/22 PKUSC Day2</p>
-<p>考试分成了鲜明的4个部分，每个部分大约1个小时。</p>
-<p>第1个小时：好像T2部分分比较稳啊，我会$O(n^2m)$，20分啦！</p>
-<p>第2个小时：链的subtask也不难？但后来随便就hack掉了，代码就烂在这里。</p>
-<p>第3个小时：快去看T1，是巨大多维DP吗？我写了个七重循环，过不了样例……</p>
-<p>第4个小时：T3模拟能拿点分吧。但是样例2就莫名RE，结束前都没调出来。（一个小时后看代码——欸我怎么把i/9写成i/3了）</p>
-<p>得分0+20+0=20。</p>
-<p>如果能重来，我要先写模拟。</p>
+<p>2022/5/21~2022/5/22</p>
+<p>PKUSC</p>
 <p>2022/5/23</p>
 <ul>
 <li>一只鸟在走廊栏杆上“随地乱所”，被尊称为“文明蛟川鸟”</li>
