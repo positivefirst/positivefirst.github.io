@@ -232,13 +232,13 @@
 </thead>
 <tbody><tr>
 <td>编译器优化</td>
-<td>423</td>
-<td>2742</td>
+<td>423(338)</td>
+<td>2742(2662)</td>
 </tr>
 <tr>
 <td>不优化</td>
-<td>1259</td>
-<td>2691</td>
+<td>1259(1000)</td>
+<td>2691(2662)</td>
 </tr>
 <tr>
 <td>浮点数除法</td>
@@ -260,6 +260,7 @@
 
 <p>测试环境：SOJ，C++14，默认 O2。只有 Barrett Reduction 的代码用了一些先进的语法，于是开 C++17。</p>
 <p>32 位模数在 $10^8+7\sim 10^9+7$ 选取。64 位模数在 $10^{17}+3\sim 10^{18}+3$ 选取。质数合数都有。</p>
+<p>更新：我一开始没考虑 <code>signed</code> 和 <code>unsigned</code> 类型的区别。<a target="_blank" rel="noopener" href="https://codeforces.com/blog/entry/111566">《A modulo multiplication method that is 2x faster than compiler implementation》</a> 指出不考虑符号的取模会快一些。Barrett Reduction 和 Montgomery Multiplication 的实现都是无符号计算。“编译器优化”和“不优化”用相应 <code>unsigned</code> 类型测试得到的用时放在上表的括号内。</p>
 <h3 id="编译器优化"><a href="#编译器优化" class="headerlink" title="编译器优化"></a>编译器优化</h3><p>把模数用 <code>constexpr</code> 修饰。</p>
 <p>32 位模数编译器实现了 Barrett Reduction（可以看汇编），64 位模数编译器似乎不优化。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> mod=<span class="number">1000000007</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> t,p;</span><br><span class="line">	cin&gt;&gt;t&gt;&gt;p;</span><br><span class="line">	<span class="keyword">while</span>(t--) p=(<span class="keyword">long</span> <span class="keyword">long</span>)p*p%mod;</span><br><span class="line">	cout&lt;&lt;p&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
