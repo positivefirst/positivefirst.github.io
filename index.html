@@ -176,6 +176,94 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/Expression-Templates/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="positive1">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="用心做事 潜力无穷">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 用心做事 潜力无穷">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/Expression-Templates/" class="post-title-link" itemprop="url">表达式模板，这是 C++ 能干的事儿？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-11-11 20:34:31" itemprop="dateCreated datePublished" datetime="2023-11-11T20:34:31+08:00">2023-11-11</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>即使有了运算符重载，表达式求值这件事里还是有太多东西只能由编译器说了算。</p>
+<p>标准库的 <code>bitset</code> 用起来很方便，可以对等长的 <code>bitset</code> 变量 <code>a,b,c,d</code> 做如下操作：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=b^c^d;</span><br></pre></td></tr></table></figure>
+
+<p>可是这么写会有额外的开销，而且占用越多存储空间的 <code>bitset</code> 开销越大。编译器先算出 <code>b^c</code>，用一个临时变量存结果，再和 <code>d</code> 做异或。这个临时变量存在栈上，申请内存和赋值都需要额外的时间。直观来说就是</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> temp=b^c;</span><br><span class="line">a=temp^d;</span><br></pre></td></tr></table></figure>
+
+<p>当然有避免临时变量的方法，如</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=b;</span><br><span class="line">a^=c;</span><br><span class="line">a^=d;</span><br></pre></td></tr></table></figure>
+
+<p>或者手写 <code>bitset</code>，对连续 $64$ 个 bit 做形如 <code>a[i]=b[i]^c[i]^d[i]</code> 的操作。严格来说这里也有 <code>unsigned long long</code> 的额外开销，只是和 <code>bitset</code> 相比忽略不计了。</p>
+<p>这些做法保证了效率，但都不够简洁。凭什么 <code>a=b^c^d</code> 就得先完整地算出 <code>b^c</code>，而不能先算 <code>a[0]=b[0]^c[0]^d[0]</code> 呢？看起来后者和 C++ 运算符重载的规则相悖，不过表达式模板提供了一种未曾设想的道路。</p>
+<p>本文参考了 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Expression_templates">https://en.wikipedia.org/wiki/Expression_templates</a>。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/Expression-Templates/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/CSP-S2023/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -878,83 +966,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/A-Glimpse-of-Ubuntu/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/Music-Player-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="positive1">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="用心做事 潜力无穷">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 用心做事 潜力无穷">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Music-Player-2/" class="post-title-link" itemprop="url">音乐播放器2</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-12-22 15:29:18" itemprop="dateCreated datePublished" datetime="2022-12-22T15:29:18+08:00">2022-12-22</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>去年写过<a href="/Music-Player/">音乐播放器</a>，<code>Beep</code> 函数的音色听起来很难受。最近学习了<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1tv4y1D7iW/">C++演奏《起风了》</a>这个视频，发现 <code>winmm</code> 的函数可以模拟钢琴。但缺点是编译麻烦。<code>#pragma comment(lib,&quot;winmm.lib&quot;)</code> 这条语句在我的电脑上是 <code>unknown pragma</code>，需要额外加编译选项 <code>-lwinmm</code>。</p>
-<p>乐谱的格式和去年基本一样。可以输入 <code>speed x</code> 调整<strong>全局的</strong>音乐速度（每分钟 x 拍）。我也来放个《起风了》作为示例。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Music-Player-2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
