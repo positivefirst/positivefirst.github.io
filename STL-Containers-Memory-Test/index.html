@@ -219,11 +219,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>STL容器的空间复杂度基本都是$O(n)$，但实际占用内存可以相差十多倍。</p>
+        <p>STL 容器的空间复杂度基本都是线性，但实际占用内存可以相差十多倍。</p>
 <span id="more"></span>
 
-<p>测试环境：洛谷IDE，C++11，不开O2。</p>
-<p>使用各容器插入$10^6$个<code>int</code>类型。理论上占用约4000kb，当然程序其他部分也会消耗内存。</p>
+<p>测试环境：洛谷 IDE，C++11，不开 O2。</p>
+<p>使用各容器插入 $10^6$ 个 <code>int</code> 类型。理论上占用约 4000kb，当然程序其他部分也会消耗内存。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> n 1000000</span></span><br><span class="line"><span class="comment">//int a[n];</span></span><br><span class="line"><span class="comment">//array&lt;int,n&gt;a;</span></span><br><span class="line"><span class="comment">//vector&lt;int&gt;a;</span></span><br><span class="line"><span class="comment">//vector&lt;int&gt;a(n);</span></span><br><span class="line"><span class="comment">//queue&lt;int&gt;a;</span></span><br><span class="line">priority_queue&lt;<span class="keyword">int</span>&gt;a;</span><br><span class="line"><span class="comment">//deque&lt;int&gt;a;</span></span><br><span class="line"><span class="comment">//stack&lt;int&gt;a;</span></span><br><span class="line"><span class="comment">//list&lt;int&gt;a;</span></span><br><span class="line"><span class="comment">//set&lt;int&gt;a;</span></span><br><span class="line"><span class="comment">//unordered_set&lt;int&gt;a;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">//a[i]=i;</span></span><br><span class="line">		<span class="comment">//a.push_back(i);</span></span><br><span class="line">		a.<span class="built_in">push</span>(i);</span><br><span class="line">		<span class="comment">//a.insert(i);</span></span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(a)&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <table>
@@ -231,7 +231,7 @@
 <tr>
 <th>容器</th>
 <th>内存/kb</th>
-<th>sizeof结果</th>
+<th>sizeof 结果</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -286,15 +286,16 @@
 </tr>
 <tr>
 <td>unordered_set</td>
-<td>50292</td>
+<td>50292(39968)</td>
 <td>56</td>
 </tr>
 </tbody></table>
-<p><code>vector1</code>是创建空<code>vector</code>，用<code>push_back</code>加入元素。<code>vector2</code>是创建长度为$10^6$的<code>vector</code>，用<code>operator[]</code>修改元素。<code>priority_queue</code>的测试结果波动很大，最小4906kb，最大6500kb。</p>
-<p>考场挂分技巧：开很大的<code>deque</code>/<code>queue</code>/<code>stack</code>数组。每个<code>deque</code>在创建时都会提前申请不少内存以容纳将来可能会加入的元素（详见cppreference），容易使人低估实际占用内存。</p>
+<p><code>vector1</code> 是创建空 <code>vector</code>，用 <code>push_back</code> 加入元素。<code>vector2</code> 是创建长度为 $10^6$ 的 <code>vector</code>，用 <code>operator[]</code> 修改元素。<code>priority_queue</code> 的测试结果波动很大，最小 4906kb，最大 6500kb。</p>
+<p>（更新于 2023/12/9）发现 GCC 偷偷优化了 <code>unordered_set</code>，括号内的数值是用 C++14（GCC 9）测出的。可惜当年没记录编译器版本。</p>
+<p>考场挂分技巧：开很大的 <code>deque</code>/<code>queue</code>/<code>stack</code> 数组。每个 <code>deque</code> 在创建时都会提前申请不少内存以容纳将来可能会加入的元素（详见 cppreference），容易使人低估实际占用内存。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">deque&lt;<span class="keyword">int</span>&gt;q[<span class="number">100000</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="built_in"><span class="keyword">sizeof</span></span>(q)/<span class="number">1024</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>仍在洛谷IDE，上面一段代码输出7812，但内存占用67684kb。更多次的测试显示平均每个空的<code>deque</code>占用约689字节。</p>
+<p>仍在洛谷 IDE，上面一段代码输出 7812，但内存占用 67684kb。更多次的测试显示平均每个空的<code>deque</code> 占用约 689 字节。</p>
 
     </div>
 

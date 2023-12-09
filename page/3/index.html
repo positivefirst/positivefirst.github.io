@@ -555,10 +555,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>有一天，我在SOJ上卡常，发现下面两种统计<code>now</code>的区间$[l,r)$中$1$的个数的方法，运行时间有明显差异。</p>
+          <p>有一天，我在 SOJ 上卡常，发现下面两种统计 <code>now</code> 的区间 $[l,r)$ 中 $1$ 的个数的方法，运行时间有明显差异。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(now&gt;&gt;l).<span class="built_in">count</span>()-(now&gt;&gt;r).<span class="built_in">count</span>();</span><br><span class="line">((now^(now&gt;&gt;r&lt;&lt;r))&gt;&gt;l).<span class="built_in">count</span>();</span><br></pre></td></tr></table></figure>
 
-<p>为了今后更好地卡常，我在洛谷和SOJ上测试了<code>bitset</code>的几种操作，并记录所用时间。</p>
+<p>为了今后更好地卡常，我在洛谷和 SOJ 上测试了 <code>bitset</code> 的几种操作，并记录所用时间。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/bitset-Speed-Test/#more" rel="contents">
@@ -873,7 +873,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>STL容器的空间复杂度基本都是$O(n)$，但实际占用内存可以相差十多倍。</p>
+          <p>STL 容器的空间复杂度基本都是线性，但实际占用内存可以相差十多倍。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/STL-Containers-Memory-Test/#more" rel="contents">
