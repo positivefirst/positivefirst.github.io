@@ -496,6 +496,7 @@ figure.highlight,
 pre {
   line-height: 1.6;
   margin: 0 auto 20px;
+  tab-size: 4;
 }
 figure.highlight figcaption,
 pre .caption,
@@ -2653,7 +2654,7 @@ mjx-container[display='true'] + br {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #16637c;
+  background: #ffa6a8;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
