@@ -601,10 +601,10 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>即使有了运算符重载，表达式求值这件事里还是有太多东西只能由编译器说了算。</p>
-<p>标准库的 <code>bitset</code> 用起来很方便，可以对等长的 <code>bitset</code> 变量 <code>a,b,c,d</code> 做如下操作：</p>
+<p><code>std::bitset</code> 用起来很方便，可以对等长的 <code>std::bitset</code> 变量 <code>a,b,c,d</code> 做如下操作：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=b^c^d;</span><br></pre></td></tr></table></figure>
 
-<p>可是这么写会有额外的开销，而且占用越多存储空间的 <code>bitset</code> 开销越大。编译器先算出 <code>b^c</code>，用一个临时变量存结果，再和 <code>d</code> 做异或。这个临时变量存在栈上，申请内存和赋值都需要额外的时间。直观来说就是</p>
+<p>可是这么写会有额外的开销，而且占用越多存储空间的 <code>std::bitset</code> 开销越大。编译器先算出 <code>b^c</code>，用一个临时变量存结果，再和 <code>d</code> 做异或。这个临时变量存在栈上，申请内存和赋值都需要额外的时间。直观来说就是</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> temp=b^c;</span><br><span class="line">a=temp^d;</span><br></pre></td></tr></table></figure>
 
 <p>当然有避免临时变量的方法，如</p>

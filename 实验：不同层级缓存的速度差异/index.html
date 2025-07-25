@@ -219,7 +219,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>随着技术的进步，代码越跑越快，许多$n,q\le10^5$的数据结构题都有被$O(nq)$暴力通过的风险。但树似乎对暴力非常不友好，甚至$n=q=40000$、6秒时限都可以卡掉暴力。</p>
+        <p>随着技术的进步，代码越跑越快，许多 $n,q\le10^5$ 的数据结构题都有被 $O(nq)$ 暴力通过的风险。但树似乎对暴力非常不友好，甚至 $n=q=40000$、6 秒时限都可以卡掉暴力。</p>
 <p>要解释原因，建议阅读：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31422201">L1，L2，L3 Cache究竟在哪里？</a></li>
@@ -228,8 +228,8 @@
 <p>当你访问内存中的某个地址时，这个地址的左右“邻居”也会进入缓存。缓存的容量比内存小得多，但是速度比内存快得多。你下次访问“邻居”，速度就比访问其他地址快。通常树的访问方式类似链表，会破坏内存访问连续性。</p>
 <span id="more"></span>
 
-<p>机房的电脑L1缓存384KB，L2缓存1.5MB，L3缓存9MB，内存8GB。同样是容量越小的速度越快。</p>
-<p>我们的实验是生成不同长度的环形链表（用<code>int</code>数组存储），沿着链表走$10^9$步，记录用时。控制计算量不变，改变内存访问范围及顺序。链表生成方式有两种，一种是完全随机，另一种是小范围随机、整体上有序。</p>
+<p>机房的电脑 L1 缓存 384KB（可能分给 6 个内核，可能分指令缓存和数据缓存），L2 缓存 1.5MB，L3 缓存 9MB，内存 8GB。同样是容量越小的速度越快。</p>
+<p>我们的实验是生成不同长度的环形链表（用 <code>int</code> 数组存储），沿着链表走 $10^9$ 步，记录用时。控制计算量不变，改变内存访问范围及顺序。链表生成方式有两种，一种是完全随机，另一种是小范围随机、整体上有序。</p>
 <table>
 <thead>
 <tr>
@@ -254,29 +254,29 @@
 <td>1174</td>
 </tr>
 <tr>
-<td>1e4</td>
+<td>1e4（略超过 L1 缓存）</td>
 <td>1490</td>
 <td>1187</td>
 </tr>
 <tr>
-<td>1e5（超过L1缓存）</td>
+<td>1e5（略超过 L2 缓存）</td>
 <td>5823</td>
 <td>1187</td>
 </tr>
 <tr>
-<td>1e6（超过L2缓存）</td>
+<td>1e6</td>
 <td>11120</td>
 <td>1187</td>
 </tr>
 <tr>
-<td>1e7（超过L3缓存）</td>
+<td>1e7（超过 L3 缓存）</td>
 <td>59924</td>
 <td>1188</td>
 </tr>
 </tbody></table>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> n=<span class="number">10000</span>;</span><br><span class="line"></span><br><span class="line"><span class="function">mt19937 <span class="title">e</span><span class="params">(<span class="number">1</span>)</span></span>;</span><br><span class="line"><span class="keyword">int</span> a[n+<span class="number">1</span>],b[n+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	<span class="keyword">unsigned</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++) b[i]=i;</span><br><span class="line">	<span class="built_in">shuffle</span>(b+<span class="number">1</span>,b+n+<span class="number">1</span>,e);</span><br><span class="line">	<span class="comment">//for(i=1;i&lt;n;i+=2) if(e()&amp;1) swap(b[i],b[i+1]);</span></span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++) a[b[i]]=b[i+<span class="number">1</span>];</span><br><span class="line">	a[b[n]]=b[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">clock_t</span> start=<span class="built_in">clock</span>();</span><br><span class="line">	<span class="keyword">for</span>(i=j=<span class="number">1</span>;i&lt;=<span class="number">1000000000</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		j=a[j];</span><br><span class="line">		sum+=j;</span><br><span class="line">	&#125;</span><br><span class="line">	cout&lt;&lt;<span class="built_in">clock</span>()-start&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>可以看出相邻两层存储器速度相差数倍。相同计算量的情况下，仅仅访问的内存不同，就能产生五十几倍的时间差异。只有用好L1缓存，才能做到“暴力出奇迹”。虽然一般题目会给几百MB的空间限制，但是少而集中地使用内存，无形中能减小许多常数。</p>
+<p>可以看出相邻两层存储器速度相差数倍。相同计算量的情况下，仅仅访问的内存不同，就能产生五十几倍的时间差异。只有用好 L1 缓存，才能做到“暴力出奇迹”。虽然一般题目会给几百 MB 的空间限制，但是少而集中地使用内存，无形中能减小许多常数。</p>
 
     </div>
 
