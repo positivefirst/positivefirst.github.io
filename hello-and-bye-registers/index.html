@@ -22,14 +22,14 @@
 
 
 
-<link rel="canonical" href="http://positivefirst.github.io/PKUSC2024/">
+<link rel="canonical" href="http://positivefirst.github.io/hello-and-bye-registers/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/PKUSC2024/","path":"PKUSC2024/","title":"PKUSC2024 游记"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/hello-and-bye-registers/","path":"hello-and-bye-registers/","title":"hello&bye,registers"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>PKUSC2024 游记 | 用心做事 潜力无穷</title>
+<title>hello&bye,registers | 用心做事 潜力无穷</title>
   
 
 
@@ -91,7 +91,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -104,7 +104,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Day0"><span class="nav-text">Day0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Day1"><span class="nav-text">Day1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Day2"><span class="nav-text">Day2</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,7 +177,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/PKUSC2024/">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/hello-and-bye-registers/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -191,12 +190,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="PKUSC2024 游记 | 用心做事 潜力无穷">
+      <meta itemprop="name" content="hello&bye,registers | 用心做事 潜力无穷">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          PKUSC2024 游记
+          hello&bye,registers
         </h1>
 
         <div class="post-meta-container">
@@ -207,7 +206,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2024-05-18 21:46:21" itemprop="dateCreated datePublished" datetime="2024-05-18T21:46:21+08:00">2024-05-18</time>
+      <time title="创建时间：2025-11-30 18:47:29" itemprop="dateCreated datePublished" datetime="2025-11-30T18:47:29+08:00">2025-11-30</time>
     </span>
 
   
@@ -220,14 +219,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="Day0"><a href="#Day0" class="headerlink" title="Day0"></a>Day0</h3><p>大巴车先去余姚接人，大约 19:30 到杭州。本来订的都是双人间，大家都“匹配”上了，我却找不到“增广路”，最后一个人一间。鸷鸟之不群兮！看到学弟一脸不愿意和我住一间——我初二和谁住的来着？</p>
-<p>“匹配”上的先领房卡，确认一个人一间已是八点后。想起来晚饭没吃。周围看起来没啥烟火气，最近的外卖要送 40 分钟。也许店都关门了？创纪录地在九点后吃晚饭。</p>
+        <p>大约是因为人们相信编译器足够聪明，<code>register</code> 关键字早已 deprecated。 直到我想要内嵌汇编——虽然最后也没汇编——才误打误撞地发现一种不报警告的 <code>register</code> 用法：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">register</span> <span class="keyword">unsigned</span> ans_part0 <span class="title">asm</span><span class="params">(<span class="string">&quot;esi&quot;</span>)</span></span>=<span class="number">0</span>,<span class="function">ans_part1 <span class="title">asm</span><span class="params">(<span class="string">&quot;edi&quot;</span>)</span></span>=<span class="number">0</span>;</span><br></pre></td></tr></table></figure>
+
+<p>而且 GCC（14.2，下同）真的会老老实实地使用 esi 和 edi 寄存器表示这两个变量！</p>
+<p>至于为啥要内嵌汇编嘛，自然是因为编译器足够愚蠢。</p>
 <span id="more"></span>
 
-<h3 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h3><p>T1 感觉是原题。T2 不会。T3 想着维护选/不选根各自的分布列，以为 48 分随便写。（然而做法是假的，复杂度也算错了。）13:39 开始写 T1，交上去 0 分，好像看错题目要求了，14:18 通过。又想了会儿 T2，想出 subtask1 大概就会了，枚举正方形的大小和方向然后绕着给定凸包内壁转一圈。以为要半平面交和类欧。（想复杂了，直线下数整点有很暴力的做法，本质不同的 斜率-距离 对只有 $O(nV^2)$ 种。）这两种算法我都写不来，于是写了 $O(V^3)$ 的暴力。15:02 开始写 T2，交上去 15 分，看来上下取整对浮点数精度的要求过高。15:36 拿到 50 分。等会再写 subtask1,2。可是等不到了。T3 怎么写都能过样例，都是 0 分。以为是写挂，时间都花在调试上。16:50 回头补了 T2 和 T3 的 subtask1。这下坐实 T3 原做法假了，随机事件不独立，也就是说结束前不用挣扎了。</p>
-<h3 id="Day2"><a href="#Day2" class="headerlink" title="Day2"></a>Day2</h3><p>T1 最近模拟赛考过。T2 很快会了平衡树做法但是看着就卡常。T3 什么玩意。13:22 开始写 T1，交上去 0 分，我怎么写的是 <code>1ull&lt;&lt;i&amp;63</code>，然后“格式错误”，高精度输出写挂，13:58 通过。T2 边写边卡常，3KB 写了一个小时。上个厕所回来发现一遍过了。T3 是不是 WC 讲的高深的 TCS 啊。飞快地写了 Floyd 交上去 subtask1 都 TLE。想着时间还剩那么多就本地随了一组数据乱搞。评测机怎么还没笔记本快。最后 SPFA 加剪枝通过了前 3 个 subtask。</p>
-<p>你是否会因为知道了回字的四种写法，就觉得不可能考第五种？</p>
-<p>我们没吃晚饭就直接上大巴车了，回到学校也将近八点。不过在老城找吃的总还是方便些。</p>
+<p>我在卡 <a target="_blank" rel="noopener" href="https://qoj.ac/problem/15001">Kth 1</a> 的常。简单来说，就是优化以下代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">pragma</span> GCC target(<span class="meta-string">&quot;bmi,bmi2&quot;</span>)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;immintrin.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">using</span> u64 = <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span>;</span><br><span class="line">u64 seed, ans = <span class="number">0</span>;</span><br><span class="line"><span class="function">u64 <span class="title">next</span><span class="params">(u64 &amp; x)</span> </span>&#123;</span><br><span class="line">    x ^= x &lt;&lt; <span class="number">13</span>; x ^= x &gt;&gt; <span class="number">17</span>; x ^= x &lt;&lt; <span class="number">5</span>;</span><br><span class="line">   <span class="keyword">return</span> x;</span><br><span class="line">&#125;   </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(u64 x, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> _tzcnt_u64(_pdep_u64(<span class="number">1ULL</span> &lt;&lt; (k<span class="number">-1</span>), x));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    std::cin &gt;&gt; n &gt;&gt; seed;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; n;++i) &#123;</span><br><span class="line">        u64 x = <span class="built_in">next</span>(seed);</span><br><span class="line">        <span class="keyword">int</span> k = (<span class="built_in">next</span>(seed) &amp; <span class="number">63</span>) + <span class="number">1</span>;</span><br><span class="line">        ans += <span class="built_in">query</span>(x, k);</span><br><span class="line">   &#125;</span><br><span class="line">    std::cout &lt;&lt; ans &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这道题最幽默的地方在于参考代码里的 <code>next</code> 函数调用 $2n$ 次已经超时了。每一个基本操作都依赖上一步的结果，并行不了一点。注意到加法具有交换律，不需要按顺序调用 <code>query</code>。所以对 $n$ 分段，拿矩阵快速幂先跳过整段的 <code>next</code> 调用，获得一些可以独立递推的 <code>seed</code>。然后还是写暴力，循环展开。</p>
+<p>能不能再快一点呢。现在段与段之间完全独立，可以并行计算。QOJ 支持 avx512 指令集，一口气递推 $8$ 个 <code>seed</code>。但我没有找到 pdep 指令的 SIMD 版本，只好逐一调用 <code>query</code>。为减少数据依赖，我开了 <code>unsigned ans_part[8]</code> 累加答案。诡异的是，如果没有循环展开，<code>ans_part</code> 可以被优化成 $8$ 个通用寄存器；如果循环展开，<code>ans_part</code> 反而退化为栈上的数组，读写都要额外指令。循环展开怎么可能占用更多的通用寄存器呢？明明我把（没循环展开的）循环体汇编代码复制几遍就该能跑。也不知道 GCC 怎么想的，反正开 O1~O3 一个样。</p>
+<p>于是我就有了内嵌汇编的想法。顺便把语句重排一下，解决数据依赖和端口冲突。（GCC 也会重排，但我看着像局部 random shuffle。）感觉把向量指令和标量指令均匀混合就挺不错。打算把汇编塞进去了，却发现比想象中要麻烦，GCC 那套汇编语法跟 Compiler Explorer 还有点区别。开头提到的 <code>register</code> 本来作用应该是为内嵌汇编操作寄存器提供方便，否则 <code>asm</code> 指定的寄存器名字没意义。虽然最终没有内嵌汇编，但我解决了内嵌汇编前遇到的问题，可以让 GCC 把  <code>ans_part</code> 塞进寄存器了。只是聪明的 GCC shuffle 了我精心重排的语句，速度应该不如内嵌汇编。</p>
+<p>向量指令集也有代价，虽然批处理快，但提取单个元素（放入通用寄存器）比较麻烦。我发现 GCC 有两招。第一招类似分治，从 zmm 中提取 ymm，从 ymm 中提取 xmm，最后把 xmm 中的元素放入通用寄存器。由于 zmm、ymm、xmm 的包含关系，提取 zmm、ymm 的低位不消耗时间。第二招是用栈空间中转，一条指令把 zmm 直接写到栈上，栈上的东西就可以像普通数组一样访问了。这意味着寄存器要和内存（这里显然能进 L1 缓存）交换数据。虽然通信延迟比寄存器之间的转移延迟大，但吞吐量也大，而且用的端口不容易和别的指令冲突。如果能提前发出读/写内存的指令，或者说解决数据依赖，理论上第二招更快。但我没有严格测试，因为 GCC 知道这两招等价，便能随心所欲地改变实现方式。</p>
 
     </div>
 
@@ -237,21 +242,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/OI/" rel="tag"># OI</a>
+              <a href="/tags/%E5%8D%A1%E5%B8%B8/" rel="tag"># 卡常</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/WC2024/" rel="prev" title="2024 冬奥会游记">
-                  <i class="fa fa-chevron-left"></i> 2024 冬奥会游记
+                <a href="/ZJ2022T22/" rel="prev" title="最后一道浙江省选">
+                  <i class="fa fa-chevron-left"></i> 最后一道浙江省选
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/Just-Remember-NOI2024/" rel="next" title="夏风终于越过繁华——NOI2024 游记">
-                  夏风终于越过繁华——NOI2024 游记 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
