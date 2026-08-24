@@ -22,14 +22,14 @@
 
 
 
-<link rel="canonical" href="http://positivefirst.github.io/exBIT/">
+<link rel="canonical" href="http://positivefirst.github.io/MetaCamp2026/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/exBIT/","path":"exBIT/","title":"用可变参数模板实现任意维树状数组"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://positivefirst.github.io/MetaCamp2026/","path":"MetaCamp2026/","title":"MetaCamp2026 游记"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>用可变参数模板实现任意维树状数组 | 用心做事 潜力无穷</title>
+<title>MetaCamp2026 游记 | 用心做事 潜力无穷</title>
   
 
 
@@ -177,7 +177,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/exBIT/">
+    <link itemprop="mainEntityOfPage" href="http://positivefirst.github.io/MetaCamp2026/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -190,12 +190,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="用可变参数模板实现任意维树状数组 | 用心做事 潜力无穷">
+      <meta itemprop="name" content="MetaCamp2026 游记 | 用心做事 潜力无穷">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          用可变参数模板实现任意维树状数组
+          MetaCamp2026 游记
         </h1>
 
         <div class="post-meta-container">
@@ -206,7 +206,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-09-11 16:30:50" itemprop="dateCreated datePublished" datetime="2022-09-11T16:30:50+08:00">2022-09-11</time>
+      <time title="创建时间：2026-08-24 15:53:30" itemprop="dateCreated datePublished" datetime="2026-08-24T15:53:30+08:00">2026-08-24</time>
     </span>
 
   
@@ -219,16 +219,27 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><code>tuple</code> 是可变参数模板现成的例子，阅读源码可知其使用 <code>...</code> 语法实现了魔幻的操作。另一方面高维树状数组每一维都在干类似的事情，这为递归提供了便利。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">unsigned</span> ...ns&gt;<span class="class"><span class="keyword">struct</span> <span class="title">BIT</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BIT</span>&lt;</span>&gt;<span class="comment">//0维树状数组：单点加单点查询</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="built_in">BIT</span>():<span class="built_in">x</span>(<span class="number">0</span>)&#123;&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> v)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		x+=v;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> x;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">unsigned</span> n,<span class="keyword">unsigned</span> ...ns&gt;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">BIT</span>&lt;</span>n,ns...&gt;</span><br><span class="line">&#123;</span><br><span class="line">	BIT&lt;ns...&gt;x[n];</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class ...args&gt;</span></span><br><span class="line"><span class="function">	<span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> v,<span class="keyword">unsigned</span> i,args ...is)</span><span class="comment">//单点加v，下标出现0会死循环</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(;i&lt;n;i+=(i&amp;-i)) x[i].<span class="built_in">add</span>(v,is...);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">template</span>&lt;class ...args&gt;</span></span><br><span class="line"><span class="function">	<span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">unsigned</span> i,args ...is)</span><span class="comment">//求前缀和</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(;i;i-=(i&amp;-i)) sum+=x[i].<span class="built_in">query</span>(is...);</span><br><span class="line">		<span class="keyword">return</span> sum;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
+        <p>刘姥姥进大观园咯！</p>
+<p>一人一间大床房？水果送到房间里？？什么叫夜床服务？？？</p>
+<p>啊啊，能来线下决赛真的刷新好多认知。</p>
 <span id="more"></span>
 
-<p>使用示例：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">BIT&lt;<span class="number">2049</span>,<span class="number">2049</span>&gt;d,di,dj,dij;<span class="comment">//2049*2049的二维树状数组，和定义数组一样方便！</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">vAdd</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y,<span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	d.<span class="built_in">add</span>(val,x,y);</span><br><span class="line">	di.<span class="built_in">add</span>(val*x,x,y);</span><br><span class="line">	dj.<span class="built_in">add</span>(val*y,x,y);</span><br><span class="line">	dij.<span class="built_in">add</span>(val*x*y,x,y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nQuery</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> d.<span class="built_in">query</span>(x,y)*(x+<span class="number">1</span>)*(y+<span class="number">1</span>)-di.<span class="built_in">query</span>(x,y)*(y+<span class="number">1</span>)-dj.<span class="built_in">query</span>(x,y)*(x+<span class="number">1</span>)+dij.<span class="built_in">query</span>(x,y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这段代码来自二维树状数组模板题<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P4514">《上帝造题的七分钟》</a>，极限数据下它的用时比两重循环的写法少 50%，不知道为啥这么快。</p>
-<p>然后写上快读和指令集，把 4 个用 <code>int</code> 的二维树状数组换成 1 个用 128 位向量的二维树状数组，就能冲最优解。</p>
+<p><img src="1.jpg"></p>
+<p>我决赛主要负责 conquest <del>以至于那几天看到 contest 就 ptsd</del>，赛前感觉这个题上 GPU 可能是有前途的，但别的题更加依赖 GPU，于是作罢。</p>
+<p>拿到题，case 从初赛的 1 个变成了 5 个。我第一反应是先把 CPU 集群占满跑 baseline。咋这么慢？</p>
+<p>哎我是不是应该估算一下每个 case 要跑多久。看 case 数据范围能有一点感觉，但是不同 case 算法差很多也不好比。有一个 case，agent 跟我预估 15min 以内跑完，实际跑了 50min。迭代结束后的执行路径没有被注意到。</p>
+<p>哎我是不是应该先优化一点再跑。一开始就是开了三四个 session，一个 agent 看一个 case 分头优化。但问题是 slurm 排长队，场面十分混乱。有的 agent 交完 job 排队就不管了，结果 job 被其它 agent 不小心取消了。还有的 agent 交完 job 排队后转头研究目前在跑的 job 去了。最后才想到开 subagent，所有的 job 都让主 agent 调度，无奈等混乱结束，只剩大概 50 分钟，收效甚微。</p>
+<p>哎我优化到多少该停呢。我当时采取的策略是优化到比榜上最快的快为止。目标终未实现，榜单已换新天。Conquest 的所有提交都被我藏到了封榜后，反正没罚时。营造出了 (+6) 的节目效果，对不起队友，不过更有节目效果的还在后面。</p>
+<blockquote>
+<p>虽然我藏得有点过分，但谁知道别人呢。</p>
+</blockquote>
+<p>哈哈，一语成谶。</p>
+<p>明确的 validator，宽松的数值容差，还不限制算法修改。这说明什么问题呢。大的要来了！看最高分队伍的分享，被吓到眩晕瘫坐，那一刻就像看到原子弹爆炸。推动其他队伍实现共产主义了倒是。</p>
+<p>这个题考验选手的乱搞水平。感觉 agent 已经 hack 成精了。Prompt 根本不应该是优化 xxx。说优化就已经默认固定算法流程了，至少我心里还在这么想，传达出来的 prompt 肯定是这样的。这个题问的是，你能不能造个快一百倍而且输出差不多的东西出来，管他算法是啥呢。</p>
+<p>Open Day 讲到，计算效率能改变思维方式，高昂的实验成本会使得探索偏向谨慎保守。之前参加的超算比赛都太松弛了，没有体会到限制并发的痛苦。以 baseline 的速度，整场比赛 8 个小时都跑不了几个 job，把所有 case 跑完都成问题，那留给乱搞的机会就少了。静态代码分析还是离不开实践检验，或许更好的办法是一开始跑一些缩小版 case 的 baseline。我几乎所有 job 都占满了 4 节点，有了小 case 就可以用更少的节点，减少排队。</p>
+<p>发的东西太多了，我为啥没有带旅行箱。怎么还会发毛绒玩具的。牛来。妈妈。广为人知的奶牛表情包。最有收获的地方还是和大家一起聊天的餐桌。大家都好牛。</p>
+<p>回家的飞机上拍到了很棒的晚霞。这还有点运气成分。我自己线上值机的时候，只剩一个座位可以选，并不靠窗。但赶到机场去值机，又说有一个靠窗的位置空着。我没多想就换了，结果刚好在西边。</p>
+<p><img src="2.jpg"></p>
 
     </div>
 
@@ -237,22 +248,16 @@
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E4%BB%A3%E7%A0%81/" rel="tag"># 代码</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/From-the-Computer/" rel="prev" title="From the Computer">
-                  <i class="fa fa-chevron-left"></i> From the Computer
+                <a href="/hello-and-bye-registers/" rel="prev" title="hello&bye,registers">
+                  <i class="fa fa-chevron-left"></i> hello&bye,registers
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/CSP-S2022/" rel="next" title="CSP-S2022 游记">
-                  CSP-S2022 游记 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
